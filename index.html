@@ -10,14 +10,14 @@
 /* --- 桌機與手機版通用設定（乾淨版） --- */
 @font-face{font-family:'YuWeiCalligraphy';src:url('./YuWeiCalligraphy.ttf') format('truetype');font-display:swap}
 .nav-pc{position:fixed;top:0;left:0;width:100%;z-index:9999;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:32px;padding:16px 120px;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);border-bottom:1px solid rgba(182,141,76,.35);white-space:nowrap}
-.nav span{font-family:'YuWeiCalligraphy';font-size:78px;letter-spacing:.38em;color:#E4C27A;margin-right:48px}
+.nav-pc span{font-family:'YuWeiCalligraphy';font-size:78px;letter-spacing:.38em;color:#E4C27A;margin-right:48px}
 .yu-btn,.yu-select{height:36px;border-radius:10px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000;border:none;padding:0 14px}
 .yu-select{padding:0 12px;border:1px solid #B68D4C}
 
 /* --- 手機版：兩排排版 --- */
 @media(max-width:768px){
-  navdding:14px 20px;gap:10px;flex-wrap:nowrap;white-space:nowrap;overflow:hidden;justify-content:space-between}
-  nav.wrap s-size:40px;margin:0;text-align:left}
+  nav.wrap{padding:14px 20px;gap:10px;flex-wrap:nowrap;white-space:nowrap;overflow:hidden;justify-content:space-between}
+  nav.wrap span{font-size:40px;margin:0;text-align:left}
   .nav-btn-row{position:fixed;bottom:0;left:0;width:100%;padding:10px 0;background:rgba(0,0,0,.9);overflow-x:auto;white-space:nowrap;display:flex;gap:12px;justify-content:flex-start}
   .nav-btn-row .yu-btn,.nav-btn-row .yu-select{flex:0 0 auto;height:40px;font-size:15px;padding:0 14px}
 }
@@ -31,13 +31,14 @@ body{padding-top:90px;}
   .grid article.card{width:100%;margin:0 auto}
   .grid img{width:100%;height:auto;display:block;border-radius:12px}
 }
+.nav-m{display:none}
+@media(max-width:768px){.nav-pc{display:none}.nav-m{position:fixed;bottom:0;left:0;width:100%;display:flex;overflow-x:auto;white-space:nowrap;gap:12px;padding:10px;background:rgba(0,0,0,.9);z-index:9999}}
 </style>
 </head>
 
-<bo.nav-m{display:none}
-@media(max-width:768px){.nav-pc{display:none}.nav-m{position:fixed;bottom:0;left:0;width:100%;display:flex;overflow-x:auto;white-space:nowrap;gap:12px;padding:10px;background:rgba(0,0,0,.9);z-index:9999}}
-</style>av class="wrap">
-  <nav class="nav-pc">>
+<body>
+  <nav class="nav-pc">
+    <span>雋宇命理</span>
     <div class="nav-btn-row">
       <button class="yu-btn">回到首頁</button>
       <button class="yu-btn">關於我們</button>
@@ -54,11 +55,11 @@ body{padding-top:90px;}
       </select>
     </div>
   </nav>
+  <nav class="nav-m"></nav>
   
   
 
-  <sect</nav>
-  <nav class="nav-m"></nav>ass="hero center" style="padding:40px 0 20px">
+  <section class="hero center" style="padding:40px 0 20px">
     
 
     <div class="birthday-box wrap" style="margin:0 auto;padding:36px;background:#0b0b0b;border-radius:18px;border:1px solid rgba(182,141,76,.35);box-shadow:0 10px 28px rgba(0,0,0,.55);max-width:900px">
