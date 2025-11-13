@@ -6,45 +6,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>雋宇命理－MIKE塔羅｜官網首頁</title>
   <style>
-/* SAFE‑AREA + SLIDE‑HINT */
-nav.wrap{
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
+/* --- 桌機與手機版通用設定（乾淨版） --- */
+@font-face{font-family:'YuWeiCalligraphy';src:url('./YuWeiCalligraphy.ttf') format('truetype');font-display:swap}
+nav.wrap{position:fixed;top:0;left:0;width:100%;z-index:9999;display:flex;align-items:center;gap:32px;padding:16px 120px;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);border-bottom:1px solid rgba(182,141,76,.35);white-space:nowrap}
+nav.wrap span{font-family:'YuWeiCalligraphy';font-size:78px;letter-spacing:.38em;color:transparent;background:linear-gradient(135deg,#F8F4E3 0%,#FFFCEB 35%,#F1E2B8 65%,#D4B98A 100%);-webkit-background-clip:text;background-clip:text;margin-right:48px}
+.yu-btn,.yu-select{height:36px;border-radius:10px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000;border:none;padding:0 14px}
+.yu-select{padding:0 12px;border:1px solid #B68D4C}
+
+/* --- 手機版：兩排排版 --- */
+@media(max-width:768px){
+  nav.wrap{padding:14px 20px;gap:10px;flex-wrap:wrap;white-space:normal;overflow:hidden;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+  nav.wrap span{width:100%;font-size:40px;margin:0 0 10px 0;text-align:center}
+  nav.wrap .yu-btn{flex:1 1 45%;height:40px;font-size:15px;padding:0 12px}
+  nav.wrap .yu-select{flex:1 1 45%;height:40px;font-size:15px;padding:0 12px}
 }
-nav.wrap::after{
-  content:"";
-  position:absolute;right:0;top:0;bottom:0;width:24px;
-  background:linear-gradient(to right,rgba(0,0,0,0),rgba(0,0,0,.9));
-  pointer-events:none;
-}
-    @font-face {
-      font-family: 'YuWeiCalligraphy';
-      src: local('YuWeiCalligraphy'), url('./YuWeiCalligraphy.ttf') format('truetype'), 'Microsoft JhengHei',serif}
-    .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
-    .gold{background:linear-gradient(135deg,var(--gold1)0%,var(--gold2)18%,var(--gold3)34%,var(--gold4)52%,var(--gold5)74%,var(--gold6)100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 .5px rgba(255,255,255,.35),0 1px 1.25px rgba(0,0,0,.65)}
-    .center{text-align:center}
-    .topbar{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border-radius:12px;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;box-shadow:0 10px 24px rgba(0,0,0,.45)}
-    .yu-select{height:36px;border-radius:8px;border:1px solid #B68D4C;background:#0d0d0d;color:#f5e6c8;padding:0 8px}
-    .yu-btn{height:36px;border-radius:10px;border:none;padding:0 14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000}
-    .yu-btn:hover{filter:brightness(1.05)}
-    .hero{padding:96px 0 48px;background:radial-gradient(1200px 500px at 50% -10%,rgba(255,210,120,.06),transparent 60%),radial-gradient(900px 400px at 50% 120%,rgba(255,210,120,.04),transparent 60%),#000}
-    .hero img{width:160px;display:block;margin:0 auto 24px}
-    .hero h1{letter-spacing:.2em;font-size:clamp(32px,6vw,56px);margin:0}
-    .hero .slogan{max-width:720px;margin:16px auto 0;color:#f1dca7;font-family:'YuWeiCalligraphy',serif;font-size:28px;letter-spacing:.18em}
-    .section{padding:80px 0;border-top:1px solid rgba(182,141,76,.3)}
-    .section .desc{color:rgba(245,230,200,.85);margin-top:12px;font-family:'YuWeiCalligraphy',serif;font-size:24px;letter-spacing:.15em}
-    .grid{display:grid;gap:24px}
-    @media(min-width:768px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
-    .card{position:relative;border-radius:18px;overflow:hidden;background:#0b0b0b;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;box-shadow:0 10px 28px rgba(0,0,0,.55);transition:transform .35s ease,box-shadow .35s ease}
-    .card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(228,194,122,.28)}
-    .product{position:relative;display:block;aspect-ratio:3/2}
-    .product img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.02)contrast(1.04);transition:transform .35s ease,filter .35s ease}
-    .card:hover .product img{transform:scale(1.05);filter:brightness(.9)blur(1px)}
-    .more{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-start;color:#f5e6c8;font-weight:700;letter-spacing:.2em;background:rgba(0,0,0,.62);opacity:0;transition:opacity .25s ease}
-    .card:hover .more{opacity:1}
-    footer{padding:40px 0;border-top:1px solid rgba(182,141,76,.3);text-align:center;color:rgba(245,230,200,.7);font-size:14px}
-  </style>
+</style>
 </head>
 <style>
 /* --- 手機版專用（修正後） --- */
