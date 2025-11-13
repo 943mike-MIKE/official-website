@@ -22,25 +22,28 @@ nav.wrap span{font-family:'YuWeiCalligraphy';font-size:78px;letter-spacing:.38em
   nav.wrap .yu-select{flex:1 1 45%;height:40px;font-size:15px;padding:0 12px}
 }
 body{padding-top:90px;} 
+.nav-btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 </style>
 </head>
 
 <body>
   <nav class="wrap">
     <span>雋宇命理</span>
-    <button class="yu-btn">回到首頁</button>
-    <button class="yu-btn">關於我們</button>
-    <button class="yu-btn">最新消息</button>
-    <button class="yu-btn">我要占卜</button>
-    <button class="yu-btn">心理測驗</button>
-    <button class="yu-btn">陪跑計畫</button>
-    <button class="yu-btn">聯絡我們</button>
-    <select class="yu-select" id="langSelect" aria-label="語言">
-      <option value="zh" selected>繁中</option>
-      <option value="en">EN</option>
-      <option value="ko">한국어</option>
-      <option value="ja">日本語</option>
-    </select>
+    <div class="nav-btn-row">
+      <button class="yu-btn">回到首頁</button>
+      <button class="yu-btn">關於我們</button>
+      <button class="yu-btn">最新消息</button>
+      <button class="yu-btn">我要占卜</button>
+      <button class="yu-btn">心理測驗</button>
+      <button class="yu-btn">陪跑計畫</button>
+      <button class="yu-btn">聯絡我們</button>
+      <select class="yu-select" id="langSelect" aria-label="語言">
+        <option value="zh" selected>繁中</option>
+        <option value="en">EN</option>
+        <option value="ko">한국어</option>
+        <option value="ja">日本語</option>
+      </select>
+    </div>
   </nav>
   
   
