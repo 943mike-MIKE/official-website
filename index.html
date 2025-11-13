@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>雋宇命理－MIKE塔羅｜官網首頁</title>
   <style>
-/* SAFE-AREA + SLIDE-HINT */
+/* SAFE‑AREA + SLIDE‑HINT */
 nav.wrap{
   padding-left: max(16px, env(safe-area-inset-left));
   padding-right: max(16px, env(safe-area-inset-right));
@@ -54,13 +54,31 @@ nav.wrap::after{
 /* --- 手機版專用（修正後） --- */
 @media(max-width:768px){
   nav.wrap{
-    padding:10px 12px;
-    gap:10px;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    white-space:nowrap;
+    padding:10px 12px !important;
+    gap:10px !important;
+    flex-wrap:nowrap !important;
+    overflow-x:auto !important;
+    white-space:nowrap !important;
     background:rgba(0,0,0,.9) !important;
   }
+  nav.wrap span{
+    font-size:32px !important;
+    margin-right:20px !important;
+    letter-spacing:.22em !important;
+  }
+  nav.wrap .yu-btn{
+    flex:0 0 auto !important;
+    width:auto !important;
+    padding:0 12px !important;
+    font-size:12px !important;
+    height:30px !important;
+  }
+  nav.wrap select{
+    flex:0 0 auto !important;
+    height:30px !important;
+    padding:0 6px !important;
+  }
+}
   nav.wrap span{
     font-size:32px !important;
     margin-right:20px !important;
