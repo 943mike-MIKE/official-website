@@ -40,12 +40,22 @@
   </style>
 </head>
 <body>
-  <nav class="wrap" style="padding:20px 0;display:flex;gap:20px;justify-content:center;align-items:center;font-weight:700;letter-spacing:.15em;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;border-radius:14px;padding:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)">
-    <button class="yu-btn">我要占卜</button>
+  <nav class="wrap" style="padding:20px 0;display:flex;gap:20px;justify-content:center;align-items:center;font-weight:700;letter-spacing:.15em;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;border-radius:14px;padding:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);position:relative">
+    <div class="yu-menu" style="position:relative">
+      <button class="yu-btn">我要占卜</button>
+      <div class="yu-dropdown" style="position:absolute;top:46px;left:0;background:#000;padding:20px 28px;border-radius:12px;border:1px solid rgba(182,141,76,.35);display:none;box-shadow:0 12px 32px rgba(0,0,0,.55);min-width:220px;z-index:9999">
+        <div style="padding:8px 0;color:#f5e6c8;cursor:pointer">預約計時諮詢</div>
+        <div style="padding:8px 0;color:#f5e6c8;cursor:pointer">預約感情狀況</div>
+        <div style="padding:8px 0;color:#f5e6c8;cursor:pointer">預約事業顧問</div>
+        <div style="padding:8px 0;color:#f5e6c8;cursor:pointer">預約八字看盤</div>
+      </div>
+    </div>
+
     <button class="yu-btn">心理測驗</button>
     <button class="yu-btn">能量小物</button>
     <button class="yu-btn">陪跑計畫</button>
     <button class="yu-btn">聯絡我們</button>
+
     <select class="yu-select" id="langSelect" aria-label="語言">
       <option value="zh" selected>繁中</option>
       <option value="en">EN</option>
@@ -53,6 +63,12 @@
       <option value="ja">日本語</option>
     </select>
   </nav>
+  <script>
+    const menu=document.querySelector('.yu-menu');
+    const drop=document.querySelector('.yu-dropdown');
+    menu.addEventListener('mouseenter',()=>{drop.style.display='block'});
+    menu.addEventListener('mouseleave',()=>{drop.style.display='none'});
+  </script>
   
 
   <section class="hero center">
