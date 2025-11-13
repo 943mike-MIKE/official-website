@@ -33,6 +33,11 @@ body{padding-top:90px;}
 }
 .nav-m{display:none}
 @media(max-width:768px){.nav-pc{display:none}.nav-m{position:fixed;bottom:0;left:0;width:100%;display:flex;overflow-x:auto;white-space:nowrap;gap:12px;padding:10px;background:rgba(0,0,0,.9);z-index:9999}}
+.nav-pc .dropdown{position:relative}
+.nav-pc .dropdown-content{display:none;position:absolute;top:40px;left:0;background:#0b0b0b;padding:12px 0;border:1px solid rgba(182,141,76,.35);border-radius:10px;box-shadow:0 10px 20px rgba(0,0,0,.55)}
+.nav-pc .dropdown:hover .dropdown-content{display:block;animation:fadeIn .25s ease-out}
+.nav-pc .dropdown-content a{display:block;padding:10px 20px;color:#f5e6c8;white-space:nowrap}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 
@@ -40,6 +45,7 @@ body{padding-top:90px;}
   <nav class="nav-pc">
     <span>雋宇命理</span>
     <div class="nav-btn-row">
+      <button class="yu-btn">能量小物</button>
       <button class="yu-btn">回到首頁</button>
       <button class="yu-btn">關於我們</button>
       <button class="yu-btn">最新消息</button>
@@ -201,7 +207,7 @@ body{padding-top:90px;}
   </section>
 
   <section class="section wrap" style="max-width:900px;margin:40px auto;padding:32px;background:#0b0b0b;border:1px solid rgba(182,141,76,.35);border-radius:18px;box-shadow:0 10px 28px rgba(0,0,0,.55)">
-    <h2 class="gold" style="text-align:center;margin-bottom:20px;font-size:26px;letter-spacing:.15em">為什麼你可以選擇我們？</h2>
+    <h2 class="gold" style="text-align:center;margin-bottom:20px;font-size:26px;letter-spacing:.15em">為什麼你應該選擇我們？</h2>
     <p style="line-height:1.8;color:rgba(245,230,200,.9);font-size:16px">我們之所以與眾不同，是因為我們不只研究命理的表層，而是長期深入人性的黑暗面、心理學的底層運作、創傷與慣性行為的結構；我們閱讀大量心理學與玄學文獻、分析無數真實個案，只為讓每一次占卜都更精準、更貼近現實問題，不是講好聽話，而是指出你真正卡住的地方。更重要的是，你會在這裡得到的是實際可行的行動方案、心理調整方向，以及真正能讓人生前進的具體步驟。</p>
   </section>
 
@@ -210,7 +216,7 @@ body{padding-top:90px;}
     <div style="text-align:center;margin-bottom:20px">
       <button class="yu-btn" style="padding:10px 28px;font-size:16px">點我進入心理測驗</button>
     </div>
-    <p style="text-align:center;color:rgba(245,230,200,.8)">(內容留白，可放互動測驗工具、人格剖析、小測驗入口)</p>
+    
   </section>
 
   
