@@ -40,31 +40,20 @@
   </style>
 </head>
 <body>
-  <nav class="wrap" style="padding:20px 0;display:flex;gap:32px;justify-content:center;font-weight:700;letter-spacing:.15em">
-    <a href="#" style="color:#f5e6c8">我要占卜</a>
-    <a href="#" style="color:#f5e6c8">心理測驗</a>
-    <a href="#" style="color:#f5e6c8">能量小物</a>
-    <a href="#" style="color:#f5e6c8">陪跑計畫</a>
-    <a href="#" style="color:#f5e6c8">聯絡我們</a>
-  </nav>
-  <div class="topbar">
+  <nav class="wrap" style="padding:20px 0;display:flex;gap:20px;justify-content:center;align-items:center;font-weight:700;letter-spacing:.15em;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;border-radius:14px;padding:16px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px)">
+    <button class="yu-btn">我要占卜</button>
+    <button class="yu-btn">心理測驗</button>
+    <button class="yu-btn">能量小物</button>
+    <button class="yu-btn">陪跑計畫</button>
+    <button class="yu-btn">聯絡我們</button>
     <select class="yu-select" id="langSelect" aria-label="語言">
       <option value="zh" selected>繁中</option>
       <option value="en">EN</option>
       <option value="ko">한국어</option>
       <option value="ja">日本語</option>
     </select>
-    <button
-      id="btnBooking"
-      class="yu-btn trans"
-      data-zh="預約"
-      data-en="Booking"
-      data-ko="예약"
-      data-ja="予約"
-      onclick="location.href='預約.html'">
-      預約
-    </button>
-  </div>
+  </nav>
+  
 
   <section class="hero center">
     <img src="./logo.png" alt="雋宇命理 LOGO">
