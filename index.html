@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>雋宇命理－MIKE塔羅｜官網首頁</title>
+  <style>
+    @font-face {
+      font-family: 'YuWeiCalligraphy';
+      src: local('YuWeiCalligraphy'), url('./YuWeiCalligraphy.ttf') format('truetype'), url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype');
+      font-display: swap;
+    }
+    :root {--bg:#000;--gold1:#C69C6D;--gold2:#E9D6A3;--gold3:#F7E7B7;--gold4:#B68D4C;--gold5:#E2C073;--gold6:#8B6B2E;}
+    body{margin:0;padding:0;background:#000;color:#f5e6c8;font-family:'Noto Serif TC','Microsoft JhengHei',serif}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+    .gold{background:linear-gradient(135deg,var(--gold1)0%,var(--gold2)18%,var(--gold3)34%,var(--gold4)52%,var(--gold5)74%,var(--gold6)100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 .5px rgba(255,255,255,.35),0 1px 1.25px rgba(0,0,0,.65)}
+    .center{text-align:center}
+    .topbar{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border-radius:12px;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+    .yu-select{height:36px;border-radius:8px;border:1px solid #B68D4C;background:#0d0d0d;color:#f5e6c8;padding:0 8px}
+    .yu-btn{height:36px;border-radius:10px;border:none;padding:0 14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000}
+    .yu-btn:hover{filter:brightness(1.05)}
+    .hero{padding:96px 0 48px;background:radial-gradient(1200px 500px at 50% -10%,rgba(255,210,120,.06),transparent 60%),radial-gradient(900px 400px at 50% 120%,rgba(255,210,120,.04),transparent 60%),#000}
+    .hero img{width:160px;display:block;margin:0 auto 24px}
+    .hero h1{letter-spacing:.2em;font-size:clamp(32px,6vw,56px);margin:0}
+    .hero .slogan{max-width:720px;margin:16px auto 0;color:#f1dca7;font-family:'YuWeiCalligraphy',serif;font-size:28px;letter-spacing:.18em}
+    .section{padding:80px 0;border-top:1px solid rgba(182,141,76,.3)}
+    .section .desc{color:rgba(245,230,200,.85);margin-top:12px;font-family:'YuWeiCalligraphy',serif;font-size:24px;letter-spacing:.15em}
+    .grid{display:grid;gap:24px}
+    @media(min-width:768px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .card{position:relative;border-radius:18px;overflow:hidden;background:#0b0b0b;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;box-shadow:0 10px 28px rgba(0,0,0,.55);transition:transform .35s ease,box-shadow .35s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(228,194,122,.28)}
+    .product{position:relative;display:block;aspect-ratio:3/2}
+    .product img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.02)contrast(1.04);transition:transform .35s ease,filter .35s ease}
+    .card:hover .product img{transform:scale(1.05);filter:brightness(.9)blur(1px)}
+    .more{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#f5e6c8;font-weight:700;letter-spacing:.2em;background:rgba(0,0,0,.62);opacity:0;transition:opacity .25s ease}
+    .card:hover .more{opacity:1}
+    footer{padding:40px 0;border-top:1px solid rgba(182,141,76,.3);text-align:center;color:rgba(245,230,200,.7);font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <select class="yu-select" id="langSelect" aria-label="語言">
+      <option value="zh" selected>繁中</option>
+      <option value="en">EN</option>
+      <option value="ko">한국어</option>
+      <option value="ja">日本語</option>
+    </select>
+    <button class="yu-btn" onclick="window.open('https://cal.com/your-booking','_blank')">預約</button>
+  </div>
+  <section class="hero center">
+    <img src="C:/Users/User/OneDrive/桌面/官方網站/logo.png" alt="雋宇命理 LOGO">
+    <h1 class="gold trans" data-zh="雋宇命理－MIKE塔羅" data-en="MIKE Tarot - Metaphysics Studio" data-ko="MIKE 타로 - 명리학 스튜디오" data-ja="雋宇命理－MIKEタロット">雋宇命理－MIKE塔羅</h1>
+    <p class="slogan trans" data-zh="讓自己回歸清淨本性" data-en="Return to your pure nature" data-ko="자신의 맑은 본성으로 돌아가세요" data-ja="自分の清らかな本性へ戻る">讓自己回歸清淨本性</p>
+  </section>
+  <section class="section wrap">
+    <div class="center" style="margin-bottom:28px">
+      <h2 class="gold trans" data-zh="服務項目" data-en="Services" data-ko="서비스 항목" data-ja="サービス項目">服務項目</h2>
+      <p class="desc trans" data-zh="依需求選擇你的修行方向" data-en="Choose your cultivation path" data-ko="필요에 맞는 수련 방향을 선택하세요" data-ja="必要に応じて修行の方向を選ぶ">依需求選擇你的修行方向</p>
+    </div>
+    <div class="grid">
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/tarot-consultation.jpg" alt="一對一命理占卜"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/tarot-class.jpg" alt="一對一塔羅班"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/bazi-class.jpg" alt="一對一八字班"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/bracelet-crystal.jpg" alt="命定水晶"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/crystal-floral-bowl.jpg" alt="水晶能量花藝盆"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/candle-prayer-crystal.jpg" alt="祈願蠟燭"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/incense-sandalwood.jpg" alt="沉香線香"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/powder-maysnow.jpg" alt="香粉瓶組"><figcaption class="more">我想了解更多</figcaption></figure></article>
+    </div>
+  </section>
+  <section class="section wrap">
+    <div class="center" style="margin-bottom:28px">
+      <h2 class="gold trans" data-zh="師資介紹" data-en="Instructors" data-ko="강사진 소개" data-ja="講師紹介">師資介紹</h2>
+      <p class="desc trans" data-zh="雋宇命理講師群——以安靜與覺察為本，承接光的教育。" data-en="Faculty rooted in stillness and awareness" data-ko="고요와 자각을 바탕으로 한 강사진" data-ja="静けさと気づきを基にした講師陣">雋宇命理講師群——以安靜與覺察為本，承接光的教育。</p>
+    </div>
+    <div class="grid">
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/teacher-mike.jpg" alt="MIKE 老師"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/teacher-lala.jpg" alt="LALA 老師"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/teacher-april.jpg" alt="APRIL 老師"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/teacher-emma.jpg" alt="EMMA 老師"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/teacher-irwin.jpg" alt="IRWIN 老師"><figcaption class="more">我想了解更多</figcaption></figure></article>
+      <article class="card"><figure class="product"><img src="C:/Users/User/OneDrive/桌面/官方網站/teacher-keith.jpg" alt="KEITH 老師"><figcaption class="more">我想了解更多</figcaption></figure></article>
+    </div>
+  </section>
+  <footer>©2025 雋宇命理 MIKE塔羅</footer>
+  <script>
+    (async()=>{if(document.fonts&&'FontFace'in window){try{const f=new FontFace('YuWeiCalligraphy',"url('./YuWeiCalligraphy.ttf') format('truetype')");await f.load();document.fonts.add(f);}catch(e){}try{const f2=new FontFace('YuWeiCalligraphy',"url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype')");await f2.load();document.fonts.add(f2);}catch(e){}}})();
+    document.getElementById('langSelect').addEventListener('change',function(){const lang=this.value;document.querySelectorAll('.trans').forEach(el=>{const text=el.getAttribute(`data-${lang}`);if(text)el.textContent=text;});});
+  </script>
+</body>
+</html>
