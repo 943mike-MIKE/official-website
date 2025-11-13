@@ -16,14 +16,16 @@
 
     @font-face {
       font-family: 'YuWeiCalligraphy';
-      src: url('C:/Users/User/OneDrive/桌面/官方網站/禹卫书法隶书繁体（新优化版）.ttf') format('truetype');
+      src: local('YuWeiCalligraphy'),
+           url('./YuWeiCalligraphy.ttf') format('truetype'),
+           url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype');
       font-display: swap;
     }
 
     body {
       margin: 0;
       font-family: "Noto Serif TC", "Microsoft JhengHei", serif;
-      background: var(--bg) url("bg.png") center/cover no-repeat fixed;
+      background: var(--bg) url("./bg.png") center/cover no-repeat fixed;
       color: var(--ink);
     }
 
@@ -142,7 +144,7 @@
   <div class="wrap">
     <div class="brand">
       <div class="logo">
-        <img src="logo.png" alt="logo">
+        <img src="./logo.png" alt="logo">
         <b>雋宇命理</b>
       </div>
       <div class="slogan">
