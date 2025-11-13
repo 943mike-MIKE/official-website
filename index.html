@@ -7,27 +7,52 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>雋宇命理－MIKE塔羅｜官網首頁</title>
   <style>
-/* --- 桌機與手機版通用設定（乾淨版） --- */
+/* 重新建構乾淨、可正常運作的 STYLE 區塊（桌機版為主） */
 @font-face{font-family:'YuWeiCalligraphy';src:url('./YuWeiCalligraphy.ttf') format('truetype');font-display:swap}
-.nav-pc{position:fixed;top:0;left:0;width:100%;z-index:9999;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;padding:16px 0px;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);border-bottom:1px solid rgba(182,141,76,.35);white-space:nowrap;}
-.nav-pc span{font-family:'YuWeiCalligraphy';font-size:78px;letter-spacing:.38em;color:#E4C27A;margin-right:40px;margin-left:0}
-.yu-btn,.yu-select{height:36px;border-radius:10px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000;border:none;padding:0 14px}
+
+/* ---- 桌機版 NAV ---- */
+.nav-pc{
+  position:fixed;top:0;left:0;width:100%;z-index:9999;
+  display:flex;flex-direction:row;align-items:center;
+  justify-content:flex-start;gap:20px;
+  padding:16px 20px;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(182,141,76,.35);
+  white-space:nowrap;
+}
+.nav-pc span{
+  font-family:'YuWeiCalligraphy';font-size:78px;
+  letter-spacing:.38em;color:#E4C27A;
+  margin-right:30px;
+}
+.nav-btn-row{display:flex;flex-direction:row;gap:12px;align-items:center}
+
+.yu-btn,.yu-select{
+  height:36px;border-radius:10px;font-weight:700;
+  cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);
+  color:#000;border:none;padding:0 14px;
+}
 .yu-select{padding:0 12px;border:1px solid #B68D4C}
 
-/* --- 手機版：兩排排版 --- */
+/* ---- Dropdown ---- */
+.nav-pc .dropdown{position:relative}
+.nav-pc .dropdown-content{
+  display:none;position:absolute;top:40px;left:0;
+  background:#0b0b0b;padding:12px 0;
+  border:1px solid rgba(182,141,76,.35);border-radius:10px;
+  box-shadow:0 10px 20px rgba(0,0,0,.55);
+}
+.nav-pc .dropdown:hover .dropdown-content{display:block;animation:fadeIn .25s ease-out}
+.nav-pc .dropdown-content a{display:block;padding:10px 20px;color:#f5e6c8;white-space:nowrap}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---- 手機版僅保留 GRID，NAV 已封印 ---- */
 @media(max-width:768px){
   .grid{grid-template-columns:1fr!important;gap:20px;margin:0 auto;width:100%}
   .grid article.card{width:100%;margin:0 auto}
   .grid img{width:100%;height:auto;display:block;border-radius:12px}
-}{width:100%;height:auto;display:block;border-radius:12px}
 }
-.nav-m{display:none}
-@media(max-width:768px){.nav-pc{display:none}.nav-m{position:fixed;bottom:0;left:0;width:100%;display:flex;overflow-x:auto;white-space:nowrap;gap:12px;padding:10px;background:rgba(0,0,0,.9);z-index:9999}}
-.nav-pc .dropdown{position:relative}
-.nav-pc .dropdown-content{display:none;position:absolute;top:40px;left:0;background:#0b0b0b;padding:12px 0;border:1px solid rgba(182,141,76,.35);border-radius:10px;box-shadow:0 10px 20px rgba(0,0,0,.55)}
-.nav-pc .dropdown:hover .dropdown-content{display:block;animation:fadeIn .25s ease-out}
-.nav-pc .dropdown-content a{display:block;padding:10px 20px;color:#f5e6c8;white-space:nowrap}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 
