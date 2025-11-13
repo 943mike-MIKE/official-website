@@ -6,6 +6,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>雋宇命理－MIKE塔羅｜官網首頁</title>
   <style>
+/* SAFE-AREA + SLIDE-HINT */
+nav.wrap{
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+nav.wrap::after{
+  content:"";
+  position:absolute;right:0;top:0;bottom:0;width:24px;
+  background:linear-gradient(to right,rgba(0,0,0,0),rgba(0,0,0,.9));
+  pointer-events:none;
+}
     @font-face {
       font-family: 'YuWeiCalligraphy';
       src: local('YuWeiCalligraphy'), url('./YuWeiCalligraphy.ttf') format('truetype'), url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype');
