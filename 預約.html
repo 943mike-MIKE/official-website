@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>預約相談｜雋宇命理</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#000; --gold1:#C69C6D; --gold2:#E9D6A3; --gold3:#F7E7B7; --gold4:#B68D4C; --gold5:#E2C073; --gold6:#8B6B2E; }
+    html,body{margin:0;padding:0;background:#000;color:#f5e6c8;font-family:'Noto Serif TC','Cinzel',serif;}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+    .center{text-align:center}
+    .gold{background:linear-gradient(135deg,var(--gold1) 0%,var(--gold2) 18%,var(--gold3) 34%,var(--gold4) 52%,var(--gold5) 74%,var(--gold6) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 .5px rgba(255,255,255,.35),0 1px 1.25px rgba(0,0,0,.65)}
+    .gold-border{border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E) 1}
+    .btn{display:inline-block;padding:10px 18px;border-radius:999px;border:1px solid #E4C27A;color:#f7edd4;text-decoration:none}
+    .btn:hover{background:rgba(226,192,115,.12)}
+    /* 右上語言/返回列 */
+    .yu-topbar{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border-radius:12px;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E) 1;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+    .yu-select{height:36px;border-radius:8px;border:1px solid #B68D4C;background:#0d0d0d;color:#f5e6c8;padding:0 8px}
+    .yu-btn{height:36px;border-radius:10px;border:none;padding:0 14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000}
+    .yu-btn:hover{filter:brightness(1.02)}
+
+    .hero{padding:104px 0 24px;background:radial-gradient(1200px 500px at 50% -10%, rgba(255,210,120,.06), transparent 60%),radial-gradient(900px 400px at 50% 120%, rgba(255,210,120,.04), transparent 60%),#000}
+    .hero h1{margin:0;font-size:clamp(30px,5.6vw,52px);letter-spacing:.18em}
+    .hero p{margin:12px auto 0;max-width:760px;color:#f1dca7}
+
+    .section{padding:32px 0 80px;border-top:1px solid rgba(182,141,76,.3)}
+    .grid{display:grid;gap:24px}
+    @media(min-width:992px){.grid.book{grid-template-columns:420px 1fr}}
+    .card{background:#0b0b0b;border-radius:18px;box-shadow:0 10px 28px rgba(0,0,0,.55);padding:18px}
+    .ttl{margin:0 0 8px;font-weight:700;letter-spacing:.06em}
+    .field{display:flex;flex-direction:column;gap:6px;margin:10px 0}
+    .input,.select{height:40px;border-radius:10px;border:1px solid #B68D4C;background:#0d0d0d;color:#f5e6c8;padding:0 12px}
+    .note{color:rgba(245,230,200,.8);font-size:14px}
+    iframe.booking{width:100%;height:820px;border-radius:18px;border:1px solid rgba(182,141,76,.35);background:#0b0b0b}
+    /* 自訂可預約行事曆（右側） */
+    .slotcal{background:#0b0b0b;border:1px solid rgba(182,141,76,.35);border-radius:18px;overflow:hidden}
+    .slotcal .head{display:grid;grid-template-columns:120px repeat(7,1fr);background:linear-gradient(135deg,rgba(228,194,122,.08),rgba(139,107,46,.06));border-bottom:1px solid rgba(182,141,76,.25)}
+    .slotcal .head div{padding:10px 8px;text-align:center;color:#f5e6c8;letter-spacing:.04em}
+    .slotcal .grid{display:grid;grid-template-columns:120px repeat(7,1fr);height:680px}
+    .slotcal .timecol{background:#0f0f0f;border-right:1px solid rgba(182,141,76,.18)}
+    .slotcal .timecol div{height:40px;line-height:40px;text-align:right;padding:0 8px;color:rgba(245,230,200,.6);font-size:12px;border-bottom:1px dashed rgba(182,141,76,.15)}
+    .slotcal .col{border-right:1px solid rgba(182,141,76,.12)}
+    .slotcal .cell{height:40px;border-bottom:1px dashed rgba(182,141,76,.15);position:relative;cursor:pointer}
+    .slotcal .cell.available:hover{outline:2px solid rgba(228,194,122,.6)}
+    .slotcal .cell.busy{background:repeating-linear-gradient(45deg,rgba(200,80,80,.18),rgba(200,80,80,.18) 8px,rgba(200,80,80,.10) 8px,rgba(200,80,80,.10) 16px);cursor:not-allowed}
+    .slotcal .cell.available{background:rgba(120,180,120,.16)}
+    .slotcal .cell.picked{background:rgba(200,80,80,.35)}
+    .slotcal .legend{display:flex;gap:12px;justify-content:flex-end;padding:8px 10px;color:rgba(245,230,200,.8);font-size:12px}
+    .slotcal .badge{display:inline-flex;align-items:center;gap:6px}
+    .slotcal .dot{width:12px;height:12px;border-radius:50%}
+    .dot-avail{background:rgba(120,180,120,.9)}
+    .dot-busy{background:rgba(200,80,80,.9)}
+  </style>
+</head>
+<body>
+  <div class="yu-topbar" role="navigation" aria-label="工具列">
+    <select class="yu-select" id="langSelect" aria-label="語言">
+      <option value="zh" selected>繁中</option>
+      <option value="en">EN</option>
+      <option value="ko">한국어</option>
+      <option value="ja">日本語</option>
+    </select>
+    <button id="btnBack" class="yu-btn" onclick="location.href='index.html'">返回</button>
+  </div>
+
+  <header class="hero center">
+    <div class="wrap">
+      <h1 id="ttlBooking" class="gold">預約相談</h1>
+      <p id="subBooking">請先選擇老師與條件，右方即顯示老師可預約時段。</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid book">
+        <aside class="card gold-border">
+          <h3 id="titleTeacher" class="ttl gold">選擇老師</h3>
+          <div class="field">
+            <select class="select" id="teacher">
+              <option value="mike" selected>MIKE</option>
+              <option value="lala">LALA</option>
+              <option value="april">APRIL</option>
+              <option value="emma">EMMA</option>
+              <option value="irwin">IRWIN</option>
+              <option value="keith">KEITH</option>
+            </select>
+          </div>
+
+          <h3 id="titleDuration" class="ttl gold">服務時長</h3>
+          <div class="field">
+            <select class="select" id="duration">
+              <option value="30" selected>30 分鐘（初談）</option>
+              <option value="60">60 分鐘（標準）</option>
+              <option value="90">90 分鐘（深度）</option>
+            </select>
+          </div>
+
+          <h3 id="titleMode" class="ttl gold">對話方式</h3>
+          <div class="field">
+            <select class="select" id="mode">
+              <option value="text" selected>文字</option>
+              <option value="call">通話</option>
+            </select>
+          </div>
+
+          <h3 id="titleTopic" class="ttl gold">對話方向</h3>
+          <div class="field">
+            <select class="select" id="topic">
+              <option value="love" selected>感情</option>
+              <option value="career">事業</option>
+              <option value="all">全方位</option>
+              <option value="other">其他</option>
+            </select>
+          </div>
+
+          <h3 id="titleLang" class="ttl gold">溝通語言</h3>
+          <div class="field">
+            <select class="select" id="prefLang">
+              <option value="zh" selected>繁中</option>
+              <option value="en">English</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+            </select>
+          </div>
+
+          <p id="noteBooking" class="note">＊注意：預約送出後請留意信箱／簡訊；若需改期，請於 24 小時前操作。</p>
+        </aside>
+
+        <main>
+          <!-- 檢視切換：互動預約( Cal.com ) / 月曆檢視( Google ) -->
+          <div class="card gold-border" style="margin-bottom:12px;display:none;align-items:center;gap:10px;justify-content:space-between;padding:10px 12px">
+            <div style="opacity:.85">檢視模式</div>
+            <div style="display:flex;gap:8px">
+              <button id="btnCal" class="btn" type="button">互動預約</button>
+              <button id="btnGcal" class="btn" type="button">月曆檢視</button>
+            </div>
+          </div>
+          <!-- 自訂可預約日曆（以 Google Calendar 資料渲染，不顯示原生 UI） -->
+          <div id="slotCalendar" class="slotcal"></div>
+          <div class="legend legend--bar slotcal legend">
+            <span id="legendAvail" class="badge"><span class="dot dot-avail"></span> 可預約</span>
+            <span id="legendBusy" class="badge"><span class="dot dot-busy"></span> 已額滿/忙碌</span>
+          </div>
+          <!-- 互動預約（Cal.com 嵌入，可關閉） -->
+          <iframe style="display:none;width:100%;height:820px;border-radius:18px;border:1px solid rgba(182,141,76,.35);background:#0b0b0b" id="calFrame" title="CalBooking"></iframe>
+          <!-- Google Calendar 月曆檢視（保留為備用，不顯示） -->
+          <iframe class="booking" id="bookingFrame" style="display:none" title="Booking" src="https://calendar.google.com/calendar/embed?src=09fed075ed050f0c0e90619feb4125027b998ae5417abaa15b5af0d2a75084d0%40group.calendar.google.com&ctz=Asia%2FTaipei"></iframe>
+          <div class="paybar" style="margin-top:12px;display:flex;gap:10px;align-items:center;justify-content:flex-end">
+            <span id="pickedInfo" style="opacity:.8;font-size:14px">請於右側選擇可預約時段</span>
+            <a id="goPay" class="btn" href="#" target="_blank" rel="noopener" style="pointer-events:none;opacity:.5">前往預約/付款</a>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+  <script>
+    // 預約/付款連結：使用 Google Calendar 的「預約行程（Appointment schedules）」連結
+    // 取得方式：Google 日曆 → 建立「預約行程」→ 複製「預約頁面連結」貼到下方對應老師
+    (function(){
+      var bookingLinks = {
+        mike: 'YOUR_GOOGLE_APPOINTMENT_LINK_HERE', // 例如：https://calendar.google.com/calendar/appointments/schedules/XXXXXXXX?gv=true
+        lala: '', april: '', emma: '', irwin: '', keith: ''
+      };
+      var $teacher = document.getElementById('teacher');
+      var $go = document.getElementById('goPay');
+      function refreshPay(){
+        var who = ($teacher && $teacher.value) || 'mike';
+        var url = bookingLinks[who] || '#';
+        $go.href = url;
+        $go.style.opacity = (url==='#') ? 0.5 : 1;
+        $go.style.pointerEvents = (url==='#') ? 'none' : 'auto';
+      }
+      if($teacher){ $teacher.addEventListener('change', refreshPay); }
+      refreshPay();
+    })();
+    </script>
+    <script>
+    // === 多語字典（僅改動文案，不影響既有流程） ===
+    (function(){
+      window.YU_I18N = {
+        zh:{
+          btnBack:'返回',
+          ttlBooking:'預約相談',
+          subBooking:'請先選擇老師與條件，右方即顯示老師可預約時段。',
+          titleTeacher:'選擇老師',
+          titleDuration:'服務時長',
+          titleMode:'對話方式',
+          titleTopic:'對話方向',
+          titleLang:'溝通語言',
+          note:'＊注意：預約送出後請留意信箱／簡訊；若需改期，請於 24 小時前操作。',
+          legendAvail:'可預約',
+          legendBusy:'已額滿/忙碌',
+          pay:'前往預約/付款',
+          modeOpts:{text:'文字',call:'通話'},
+          topicOpts:{love:'感情',career:'事業',all:'全方位',other:'其他'},
+          durOpts:{'30':'30 分鐘（初談）','60':'60 分鐘（標準）','90':'90 分鐘（深度）'},
+          langOpts:{zh:'繁中',en:'EN',ko:'한국어',ja:'日本語'}
+        },
+        en:{
+          btnBack:'Back',
+          ttlBooking:'Booking',
+          subBooking:'Choose a consultant and options. Available time slots appear on the right.',
+          titleTeacher:'Consultant',
+          titleDuration:'Duration',
+          titleMode:'Mode',
+          titleTopic:'Topic',
+          titleLang:'Language',
+          note:'*Note: After booking, check email/SMS. For rescheduling, please do so 24h in advance.',
+          legendAvail:'Available',
+          legendBusy:'Busy/Booked',
+          pay:'Proceed to Booking/Payment',
+          modeOpts:{text:'Text',call:'Call'},
+          topicOpts:{love:'Love',career:'Career',all:'All-round',other:'Other'},
+          durOpts:{'30':'30 min (Intro)','60':'60 min (Standard)','90':'90 min (Deep)'},
+          langOpts:{zh:'ZH',en:'EN',ko:'KO',ja:'JA'}
+        },
+        ko:{
+          btnBack:'뒤로',
+          ttlBooking:'예약 상담',
+          subBooking:'상담사와 옵션을 선택하세요. 가능한 시간은 오른쪽에 표시됩니다.',
+          titleTeacher:'상담사 선택',
+          titleDuration:'소요 시간',
+          titleMode:'방식',
+          titleTopic:'주제',
+          titleLang:'언어',
+          note:'*안내: 예약 후 이메일/문자를 확인하세요. 변경은 24시간 전에 진행해 주세요.',
+          legendAvail:'예약 가능',
+          legendBusy:'마감/바쁨',
+          pay:'예약/결제 바로가기',
+          modeOpts:{text:'텍스트',call:'통화'},
+          topicOpts:{love:'연애',career:'커리어',all:'종합',other:'기타'},
+          durOpts:{'30':'30분 (소개)','60':'60분 (표준)','90':'90분 (심화)'},
+          langOpts:{zh:'중문',en:'영문',ko:'한국어',ja:'일본어'}
+        },
+        ja:{
+          btnBack:'戻る',
+          ttlBooking:'予約相談',
+          subBooking:'先生と条件を選択してください。右側に予約可能枠が表示されます。',
+          titleTeacher:'先生を選ぶ',
+          titleDuration:'所要時間',
+          titleMode:'方式',
+          titleTopic:'テーマ',
+          titleLang:'言語',
+          note:'※注意：予約後はメール/SMSをご確認ください。変更は24時間前までに。',
+          legendAvail:'予約可',
+          legendBusy:'満席/ビジー',
+          pay:'予約/支払いへ',
+          modeOpts:{text:'テキスト',call:'通話'},
+          topicOpts:{love:'恋愛',career:'仕事',all:'総合',other:'その他'},
+          durOpts:{'30':'30分（初回）','60':'60分（標準）','90':'90分（深掘り）'},
+          langOpts:{zh:'繁体',en:'英語',ko:'韓国語',ja:'日本語'}
+        }
+      };
+      window.applyI18n = function(lang){
+        var dict = (window.YU_I18N && window.YU_I18N[lang]) || window.YU_I18N.zh;
+        document.documentElement.setAttribute('lang', lang);
+        var byId = function(id, txt){ var el=document.getElementById(id); if(el){ el.textContent = txt; } };
+        byId('btnBack', dict.btnBack);
+        byId('ttlBooking', dict.ttlBooking);
+        byId('subBooking', dict.subBooking);
+        byId('titleTeacher', dict.titleTeacher);
+        byId('titleDuration', dict.titleDuration);
+        byId('titleMode', dict.titleMode);
+        byId('titleTopic', dict.titleTopic);
+        byId('titleLang', dict.titleLang);
+        byId('noteBooking', dict.note);
+        byId('legendAvail', dict.legendAvail);
+        byId('legendBusy', dict.legendBusy);
+        var $go = document.getElementById('goPay'); if($go){ $go.textContent = dict.pay; }
+        // 下拉選單選項
+        var $mode = document.getElementById('mode'); if($mode){
+          Array.from($mode.options).forEach(function(op){ if(dict.modeOpts[op.value]) op.textContent = dict.modeOpts[op.value]; });
+        }
+        var $topic = document.getElementById('topic'); if($topic){
+          Array.from($topic.options).forEach(function(op){ if(dict.topicOpts[op.value]) op.textContent = dict.topicOpts[op.value]; });
+        }
+        var $dur = document.getElementById('duration'); if($dur){
+          Array.from($dur.options).forEach(function(op){ if(dict.durOpts[op.value]) op.textContent = dict.durOpts[op.value]; });
+        }
+        var $langTop = document.getElementById('langSelect'); if($langTop){
+          Array.from($langTop.options).forEach(function(op){ if(dict.langOpts[op.value]) op.textContent = dict.langOpts[op.value]; });
+        }
+        var $pref = document.getElementById('prefLang'); if($pref){
+          Array.from($pref.options).forEach(function(op){ if(dict.langOpts[op.value]) op.textContent = dict.langOpts[op.value]; });
+        }
+      };
+    })();
+    </script>
+    <script>
+    // === 自訂可預約日曆（以 Google Calendar 事件渲染） ===
+    (function(){
+      // ▼ 在這裡放你的 Google Calendar 公開日曆 ID 與 API Key
+      // 日曆 ID：你剛提供的公開 group calendar
+      var GCAL_ID = '09fed075ed050f0c0e90619feb4125027b998ae5417abaa15b5af0d2a75084d0@group.calendar.google.com';
+      // API Key：到 Google Cloud Console 建立（Calendar API 啟用後），再貼上
+      var API_KEY = 'YOUR_GOOGLE_API_KEY_HERE';
+      // 若仍為預設字串則視為未啟用（避免對 Google API 發出無效請求）
+      var ENABLED = API_KEY && !/^YOUR_/i.test(API_KEY);
+
+      // 基本設定
+      var START_HOUR = 10; // 營業開始（24h）
+      var END_HOUR   = 22; // 營業結束（24h）
+      var SLOT_MIN   = 30; // 時段粒度（分鐘）
+      var DAYS       = 7;  // 顯示天數
+
+      var $wrap = document.getElementById('slotCalendar');
+      var _frame = null; // 保存目前渲染的格子，供 onPick 直接染色使用
+      var $goPay = document.getElementById('goPay');
+      var $picked = document.getElementById('pickedInfo');
+      var $dur = document.getElementById('duration');
+      var $teacher = document.getElementById('teacher');
+      var $lang = document.getElementById('prefLang');
+      var $langTop = document.getElementById('langSelect');
+      // 多選：最多 60 分鐘（以 SLOT_MIN 粒度計算）
+      var pickedCells = []; // 存放已選的 cell DOM（同一欄位，連續最多 2 格）
+      var MAX_MIN = 60;
+
+      function fmtDate(d){ return d.getFullYear()+ '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+      function clone(d){ return new Date(d.getTime()); }
+      function addMin(d,m){ var x=new Date(d); x.setMinutes(x.getMinutes()+m); return x; }
+
+      function buildFrame(){
+        var now = new Date(); now.setHours(0,0,0,0);
+        var head = document.createElement('div'); head.className='head';
+        head.appendChild(document.createElement('div')).textContent='時間';
+        var days=[]; for(var i=0;i<DAYS;i++){ var dd=new Date(now); dd.setDate(now.getDate()+i); days.push(dd); var h= document.createElement('div'); h.textContent = (dd.getMonth()+1)+'/'+dd.getDate()+'('+['日','一','二','三','四','五','六'][dd.getDay()]+')'; head.appendChild(h);}        
+        var grid = document.createElement('div'); grid.className='grid';
+        var timecol = document.createElement('div'); timecol.className='timecol';
+        var totalRows = ((END_HOUR-START_HOUR)*60)/SLOT_MIN;
+        for(var r=0;r<totalRows;r++){ var t = START_HOUR*60 + r*SLOT_MIN; var hh = Math.floor(t/60); var mm = t%60; var d=document.createElement('div'); d.textContent=String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0'); timecol.appendChild(d);}        
+        grid.appendChild(timecol);
+        var cols=[]; for(var c=0;c<DAYS;c++){ var col=document.createElement('div'); col.className='col'; cols.push(col); for(var r=0;r<totalRows;r++){ var cell=document.createElement('div'); cell.className='cell available'; col.appendChild(cell);} grid.appendChild(col);}        
+        $wrap.innerHTML=''; $wrap.appendChild(head); $wrap.appendChild(grid);
+        _frame = {days:days, cols:cols, totalRows:totalRows};
+        return _frame;
+      }
+
+      function fetchEvents(rangeStart, rangeEnd){
+        if(!ENABLED){ return Promise.resolve([]); }
+        var url = 'https://www.googleapis.com/calendar/v3/calendars/' + encodeURIComponent(GCAL_ID) + '/events';
+        var params = new URLSearchParams({ key: API_KEY, singleEvents:'true', orderBy:'startTime', timeMin: rangeStart.toISOString(), timeMax: rangeEnd.toISOString() });
+        return fetch(url+'?'+params.toString()).then(function(r){ return r.json(); }).then(function(json){
+          if(!json.items) return [];
+          return json.items.map(function(ev){
+            var s = ev.start.dateTime ? new Date(ev.start.dateTime) : new Date(ev.start.date+'T00:00:00');
+            var e = ev.end.dateTime ? new Date(ev.end.dateTime) : new Date(ev.end.date+'T23:59:59');
+            return {start:s,end:e};
+          });
+        }).catch(function(){ return []; });
+      }
+
+      function markBusy(cols, days, totalRows, events){
+        function isOverlap(s1,e1,s2,e2){ return s1<e2 && s2<e1; }
+        for(var c=0;c<days.length;c++){
+          for(var r=0;r<totalRows;r++){
+            var base = new Date(days[c]); base.setHours(START_HOUR,0,0,0);
+            var slotStart = addMin(base, r*SLOT_MIN);
+            var slotEnd = addMin(slotStart, SLOT_MIN);
+            var busy = events.some(function(ev){ return isOverlap(slotStart,slotEnd, ev.start, ev.end); });
+            var cell = cols[c].children[r];
+            if(busy){ cell.classList.remove('available'); cell.classList.add('busy'); cell.onclick=null; }
+            else {
+              cell.classList.add('available');
+              cell.dataset.startIso = slotStart.toISOString();
+              cell.dataset.col = String(c);
+              cell.dataset.row = String(r);
+              cell.onclick = onCellClick;
+            }
+          }
+        }
+      }
+
+      function updateSelectionUI(){
+        // 清理不存在的節點
+        pickedCells = pickedCells.filter(function(el){ return el && el.isConnected; });
+        // 排序（同欄位同日）
+        pickedCells.sort(function(a,b){ return parseInt(a.dataset.row,10) - parseInt(b.dataset.row,10); });
+        // 樣式刷新
+        var all = _frame ? _frame.cols.flatMap(function(col){ return Array.from(col.children); }) : [];
+        all.forEach(function(cell){ if(cell.classList.contains('picked')){ cell.classList.remove('picked'); cell.classList.add('available'); } });
+        pickedCells.forEach(function(cell){ cell.classList.remove('available'); cell.classList.add('picked'); });
+        // 計算起訖
+        if(pickedCells.length===0){
+          $picked.textContent='請於右側選擇可預約時段';
+          $goPay.style.pointerEvents='none'; $goPay.style.opacity='.5';
+          return;
+        }
+        var startCell = pickedCells[0];
+        var endCell = pickedCells[pickedCells.length-1];
+        var start = new Date(startCell.dataset.startIso);
+        var dur = pickedCells.length * SLOT_MIN; // 30 或 60
+        var end = addMin(start, dur);
+        var who = ($teacher && $teacher.value) || 'mike';
+        var lang = ($lang && $lang.value) || ($langTop && $langTop.value) || 'zh';
+        $picked.textContent = '已選：' + start.toLocaleString() + ' ～ ' + end.toLocaleTimeString() + '（'+dur+' 分）';
+        var payURL = 'YOUR_PAYMENT_OR_APPOINTMENT_LINK?teacher='+encodeURIComponent(who)+'&start='+encodeURIComponent(start.toISOString())+'&end='+encodeURIComponent(end.toISOString())+'&lang='+encodeURIComponent(lang)+'&dur='+dur;
+        $goPay.href = payURL; $goPay.style.pointerEvents='auto'; $goPay.style.opacity='1';
+      }
+
+      function onCellClick(evt){
+        var cell = evt.currentTarget;
+        if(cell.classList.contains('busy')) return;
+        var col = parseInt(cell.dataset.col,10);
+        var row = parseInt(cell.dataset.row,10);
+        // 若已選，點擊則取消該格
+        var idx = pickedCells.indexOf(cell);
+        if(idx>-1){ pickedCells.splice(idx,1); updateSelectionUI(); return; }
+        // 新增選取
+        if(pickedCells.length===0){
+          pickedCells=[cell]; updateSelectionUI(); return;
+        }
+        if(pickedCells.length===1){
+          var c0 = parseInt(pickedCells[0].dataset.col,10);
+          var r0 = parseInt(pickedCells[0].dataset.row,10);
+          // 同一欄且相鄰才允許組成 60 分鐘
+          if(col===c0 && (row===r0+1 || row===r0-1)){
+            pickedCells.push(cell); updateSelectionUI(); return;
+          } else {
+            // 不是相鄰同欄：改為重新選取
+            pickedCells=[cell]; updateSelectionUI(); return;
+          }
+        }
+        if(pickedCells.length>=2){
+          // 最多兩格：點第三格則重置為單選該格
+          pickedCells=[cell]; updateSelectionUI(); return;
+        }
+      }
+
+      // 初始化渲染
+      var frame = buildFrame();
+      var rangeStart = clone(new Date()); rangeStart.setHours(0,0,0,0);
+      var rangeEnd = clone(rangeStart); rangeEnd.setDate(rangeEnd.getDate()+DAYS); rangeEnd.setHours(23,59,59,999);
+      function refreshBusy(){
+        var frame = buildFrame();
+        var rangeStart = clone(new Date()); rangeStart.setHours(0,0,0,0);
+        var rangeEnd = clone(rangeStart); rangeEnd.setDate(rangeEnd.getDate()+DAYS); rangeEnd.setHours(23,59,59,999);
+        fetchEvents(rangeStart, rangeEnd).then(function(events){
+          markBusy(frame.cols, frame.days, frame.totalRows, events);
+        });
+      }
+      refreshBusy();
+      if(ENABLED){ setInterval(refreshBusy, 60000); }
+
+      // 同步右上語言選單與側欄語言（修復語言切換失靈 & 全站文案切換）
+      if($langTop && $lang){
+        // 初始對齊 + 首次套文案
+        $langTop.value = $lang.value;
+        if(window.applyI18n){ applyI18n($lang.value); }
+        $langTop.addEventListener('change', function(){
+          $lang.value = $langTop.value;
+          if(window.applyI18n){ applyI18n($langTop.value); }
+          var ev = new Event('change');
+          $lang.dispatchEvent(ev);
+        });
+        $lang.addEventListener('change', function(){
+          $langTop.value = $lang.value;
+          if(window.applyI18n){ applyI18n($lang.value); }
+        });
+      } else {
+        // 後備：若缺任一選單，至少依現有值或預設 zh 套文案
+        if(window.applyI18n){ applyI18n(($lang && $lang.value) || 'zh'); }
+      }
+    })();
+  </script>
+</body>
+</html>
