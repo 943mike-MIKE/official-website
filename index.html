@@ -18,7 +18,7 @@
 @media(max-width:768px){
   nav.wrap{padding:14px 20px;gap:10px;flex-wrap:nowrap;white-space:nowrap;overflow:hidden;justify-content:space-between}
   nav.wrap span{font-size:40px;margin:0;text-align:left}
-  .nav-btn-row{position:fixed;bottom:0;left:0;width:100%;padding:10px 0;background:rgba(0,0,0,.9);overflow-x:auto;white-space:nowrap;display:flex;gap:12px;justify-content:flex-start}
+  .nav-btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;transform:translateX(-20px)}
   .nav-btn-row .yu-btn,.nav-btn-row .yu-select{flex:0 0 auto;height:40px;font-size:15px;padding:0 14px}
 }
   
@@ -45,16 +45,10 @@ body{padding-top:90px;}
   <nav class="nav-pc">
     <span>雋宇命理</span>
     <div class="nav-btn-row">
-      <div class="dropdown"><button class="yu-btn">能量小物</button>
-        <div class="dropdown-content">
-          <a href="#">水晶手串</a>
-          <a href="#">午月雪粉</a>
-          <a href="#">印度檀香</a>
-        </div>
-      </div>
       <button class="yu-btn">回到首頁</button>
       <button class="yu-btn">關於我們</button>
       <button class="yu-btn">最新消息</button>
+
       <div class="dropdown"><button class="yu-btn">我要占卜</button>
         <div class="dropdown-content">
           <a href="#">八字祥批</a>
@@ -62,6 +56,15 @@ body{padding-top:90px;}
           <a href="#">事業顧問</a>
         </div>
       </div>
+
+      <div class="dropdown"><button class="yu-btn">能量小物</button>
+        <div class="dropdown-content">
+          <a href="#">水晶手串</a>
+          <a href="#">午月雪粉</a>
+          <a href="#">印度檀香</a>
+        </div>
+      </div>
+
       <button class="yu-btn">心理測驗</button>
       <button class="yu-btn">陪跑計畫</button>
       <button class="yu-btn">聯絡我們</button>
