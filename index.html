@@ -46,13 +46,24 @@
       <option value="ko">한국어</option>
       <option value="ja">日本語</option>
     </select>
-    <button class="yu-btn" onclick="window.open('https://cal.com/your-booking','_blank')">預約</button>
+    <button
+      id="btnBooking"
+      class="yu-btn trans"
+      data-zh="預約"
+      data-en="Booking"
+      data-ko="예약"
+      data-ja="予約"
+      onclick="location.href='預約.html'">
+      預約
+    </button>
   </div>
+
   <section class="hero center">
     <img src="./logo.png" alt="雋宇命理 LOGO">
     <h1 class="gold trans" data-zh="雋宇命理－MIKE塔羅" data-en="MIKE Tarot - Metaphysics Studio" data-ko="MIKE 타로 - 명리학 스튜디오" data-ja="雋宇命理－MIKEタロット">雋宇命理－MIKE塔羅</h1>
     <p class="slogan trans" data-zh="讓自己回歸清淨本性" data-en="Return to your pure nature" data-ko="자신의 맑은 본성으로 돌아가세요" data-ja="自分の清らかな本性へ戻る">讓自己回歸清淨本性</p>
   </section>
+
   <section class="section wrap">
     <div class="center" style="margin-bottom:28px">
       <h2 class="gold trans" data-zh="服務項目" data-en="Services" data-ko="서비스 항목" data-ja="サービス項目">服務項目</h2>
@@ -69,6 +80,7 @@
       <article class="card"><figure class="product"><img src="./powder-maysnow.jpg" alt="香粉瓶組"><figcaption class="more">我想了解更多</figcaption></figure></article>
     </div>
   </section>
+
   <section class="section wrap">
     <div class="center" style="margin-bottom:28px">
       <h2 class="gold trans" data-zh="師資介紹" data-en="Instructors" data-ko="강사진 소개" data-ja="講師紹介">師資介紹</h2>
@@ -83,10 +95,40 @@
       <article class="card"><figure class="product"><img src="./teacher-keith.jpg" alt="KEITH 老師"><figcaption class="more">我想了解更多</figcaption></figure></article>
     </div>
   </section>
+
   <footer>©2025 雋宇命理 MIKE塔羅</footer>
+
   <script>
-    (async()=>{if(document.fonts&&'FontFace'in window){try{const f=new FontFace('YuWeiCalligraphy',"url('./YuWeiCalligraphy.ttf') format('truetype')");await f.load();document.fonts.add(f);}catch(e){}try{const f2=new FontFace('YuWeiCalligraphy',"url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype')");await f2.load();document.fonts.add(f2);}catch(e){}}})();
-    document.getElementById('langSelect').addEventListener('change',function(){const lang=this.value;document.querySelectorAll('.trans').forEach(el=>{const text=el.getAttribute(`data-${lang}`);if(text)el.textContent=text;});});
+    (async()=>{
+      if(document.fonts&&'FontFace'in window){
+        try{
+          const f=new FontFace('YuWeiCalligraphy',"url('./YuWeiCalligraphy.ttf') format('truetype')");
+          await f.load();document.fonts.add(f);
+        }catch(e){}
+        try{
+          const f2=new FontFace('YuWeiCalligraphy',"url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype')");
+          await f2.load();document.fonts.add(f2);
+        }catch(e){}
+      }
+    })();
+
+    document.getElementById('langSelect').addEventListener('change',function(){
+      const lang=this.value;
+      document.querySelectorAll('.trans').forEach(el=>{
+        const text=el.getAttribute(`data-${lang}`);
+        if(text) el.textContent=text;
+      });
+    });
+
+    // 初始化一次，確保預約按鈕文字和預設語言同步
+    (function initLang(){
+      const select = document.getElementById('langSelect');
+      const lang = select ? select.value : 'zh';
+      document.querySelectorAll('.trans').forEach(el=>{
+        const text=el.getAttribute(`data-${lang}`);
+        if(text) el.textContent=text;
+      });
+    })();
   </script>
 </body>
 </html>
