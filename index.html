@@ -9,9 +9,8 @@
   <style>
 /* --- 桌機與手機版通用設定（乾淨版） --- */
 @font-face{font-family:'YuWeiCalligraphy';src:url('./YuWeiCalligraphy.ttf') format('truetype');font-display:swap}
-.nav-pc{position:fixed;top:0;left:0;width:100%;z-index:9999;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;padding:16px 20px;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);border-bottom:1px solid rgba(182,141,76,.35);white-space:nowrap;}
-.nav-pc span{font-family:'YuWeiCalligraphy';font-size:78px;letter-spacing:.38em;color:#E4C27A;margin-right:20px;margin-left:-20px}
-.yu-btn,.yu-select{height:36px;border-radius:10px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000;border:none;padding:0 14px}
+.nav-pc{position:fixed;top:0;left:0;width:100%;z-index:9999;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;padding:16px 0px;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);border-bottom:1px solid rgba(182,141,76,.35);white-space:nowrap;}
+.nav-pc span{font-family:'YuWeiCalligraphy';font-size:78px;letter-spacing:.38em;color:#E4C27A;margin-right:40px;margin-left:0}-btn,.yu-select{height:36px;border-radius:10px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000;border:none;padding:0 14px}
 .yu-select{padding:0 12px;border:1px solid #B68D4C}
 
 /* --- 手機版：兩排排版 --- */
@@ -27,9 +26,7 @@
   
   
 body{padding-top:90px;} 
-.nav-pc .pc-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-left:40px}
-
-@media(max-width:768px){
+.nav.nav-pc .pc-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-left:0}a(max-width:768px){
   .grid{grid-template-columns:1fr!important;gap:20px;margin:0 auto;width:100%}
   .grid article.card{width:100%;margin:0 auto}
   .grid img{width:100%;height:auto;display:block;border-radius:12px}
