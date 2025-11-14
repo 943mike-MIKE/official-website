@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="zh-Hant">
 <head>
@@ -29,29 +30,18 @@
     .menu a.active{background:rgba(228,194,122,.25)}
 
     iframe.page-view{width:100%;height:calc(100vh - 100px);border:none;}
-    .content{flex:1;margin-left:240px}
+    .content{flex:1;margin-left:0;}
   </style>
 </head>
 <body>
   <div class="topbar">
-    <select class="yu-select" id="langSelect" aria-label="語言">
-      <option value="zh" selected>繁中</option>
-      <option value="en">EN</option>
-      <option value="ko">한국어</option>
-      <option value="ja">日本語</option>
-    </select>
-    <button class="yu-btn" onclick="window.open('https://cal.com/your-booking','_blank')">預約</button>
+    <button class="yu-btn" onclick="location.href='index.html'">官方網站</button>
+    
+    
   </div>
 
   <div class="layout">
-    <aside class="sidebar">
-      <h2 class="gold">官網後台</h2>
-      <nav class="menu">
-        <a href="#" onclick="loadPage('ig機器人.html', this)" class="active">ig機器人</a>
-        <a href="#" onclick="loadPage('官網第一頁.html', this)">網站前台</a>
-        <a href="#" onclick="loadPage('預約.html', this)">預約系統</a>
-      </nav>
-    </aside>
+    
 
     <main class="content">
       <iframe id="pageFrame" class="page-view" src="ig機器人.html"></iframe>
@@ -67,3 +57,4 @@
   </script>
 </body>
 </html>
+
