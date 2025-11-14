@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IG 商業帳號｜雋宇命理後台</title>
+
+<style>
+  body{
+    margin:0;
+    background:#000;
+    color:#f5e6c8;
+    font-family:'Noto Serif TC','Microsoft JhengHei',serif;
+    padding:40px 20px;
+  }
+
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  h1{
+    font-size:24px;
+    margin-bottom:24px;
+    letter-spacing:.1em;
+    background:linear-gradient(135deg,#C69C6D 0%,#E9D6A3 18%,#F7E7B7 34%,#B68D4C 52%,#E2C073 74%,#8B6B2E 100%);
+    -webkit-background-clip:text;
+    color:transparent;
+  }
+
+  .input-row{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:28px;
+  }
+
+  input{
+    flex:1;
+    height:40px;
+    border-radius:8px;
+    border:1px solid #B68D4C;
+    background:#0d0d0d;
+    color:#f5e6c8;
+    padding:0 12px;
+    font-size:15px;
+  }
+
+  .btn{
+    height:40px;
+    padding:0 18px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    background:linear-gradient(135deg,#E4C27A,#8B6B2E);
+    color:#000;
+    font-weight:700;
+    letter-spacing:.05em;
+  }
+
+  /* 固定 IG 資訊卡 */
+  .info-card{
+    margin-top:20px;
+    padding:24px;
+    border:1px solid #B68D4C;
+    border-radius:14px;
+    background:rgba(255,255,255,0.03);
+    max-width:600px;
+  }
+
+  .user-row{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+
+  .avatar{
+    width:80px;
+    height:80px;
+    background:#111;
+    border-radius:50%;
+    border:1px solid #B68D4C;
+    background-size:cover;
+    background-position:center;
+  }
+
+  .stats{
+    margin-top:18px;
+    display:flex;
+    gap:30px;
+    font-size:15px;
+  }
+
+  @media(max-width:600px){
+    .stats{
+      flex-direction:column;
+      gap:10px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+<div class="wrap">
+
+  <h1>Instagram 商業帳號</h1>
+
+  <div class="input-row">
+    <input id="igInput" placeholder="輸入 Instagram 帳號，例如：mike_tarot" />
+    <button class="btn" id="linkBtn">連結帳號</button>
+  </div>
+
+  <!-- 固定顯示框，不會因為沒資料而消失 -->
+  <div id="infoCard" class="info-card">
+      <div class="user-row">
+        <div id="avatar" class="avatar"></div>
+
+        <div>
+          <div id="displayName" style="font-size:18px;color:#E4C27A;margin-bottom:6px;">
+            使用者名稱
+          </div>
+          <div id="userStatus" style="color:#aaa;font-size:14px;">
+            尚未搜尋
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div>粉絲：<span id="followers">--</span></div>
+        <div>貼文：<span id="posts">--</span></div>
+        <div>互動率：<span id="engRate">--</span>%</div>
+      </div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById("linkBtn").onclick = async () => {
+
+  const user = document.getElementById("igInput").value.trim();
+  const status = document.getElementById("userStatus");
+
+  if(!user){
+    status.textContent = "請輸入帳號";
+    status.style.color = "#f66";
+    return;
+  }
+
+  status.textContent = "搜尋中…";
+  status.style.color = "#aaa";
+
+  try{
+    // 你之後要換成你自己的 API
+    const res = await fetch(`https://api.example.com/ig?user=${user}`);
+    const data = await res.json();
+
+    if(data && data.username){
+
+      document.getElementById("displayName").textContent = data.username;
+      document.getElementById("followers").textContent = data.followers;
+      document.getElementById("posts").textContent = data.posts;
+      document.getElementById("engRate").textContent = data.engagement;
+
+      // 大頭貼
+      document.getElementById("avatar").style.backgroundImage =
+        `url('${data.profilePic || ""}')`;
+
+      status.textContent = "連結成功";
+      status.style.color = "#7BE27B";
+
+    }else{
+      status.textContent = "查無此帳號";
+      status.style.color = "#f66";
+    }
+
+  }catch(e){
+    status.textContent = "查詢失敗";
+    status.style.color = "#f66";
+  }
+};
+</script>
+
+</body>
+</html>
