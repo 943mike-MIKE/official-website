@@ -16,7 +16,7 @@
     .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
     .gold{background:linear-gradient(135deg,var(--gold1)0%,var(--gold2)18%,var(--gold3)34%,var(--gold4)52%,var(--gold5)74%,var(--gold6)100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 .5px rgba(255,255,255,.35),0 1px 1.25px rgba(0,0,0,.65)}
     .center{text-align:center}
-    .topbar{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border-radius:12px;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+    .topbar{position:fixed;top:12px;left:12px;z-index:9999;display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border-radius:12px;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;box-shadow:0 10px 24px rgba(0,0,0,.45)}
     .yu-select{height:36px;border-radius:8px;border:1px solid #B68D4C;background:#0d0d0d;color:#f5e6c8;padding:0 8px}
     .yu-btn{height:36px;border-radius:10px;border:none;padding:0 14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000}
     .yu-btn:hover{filter:brightness(1.05)}
@@ -54,6 +54,41 @@
       document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
       el.classList.add('active');
     }
+    window.addEventListener('DOMContentLoaded',()=>{
+    const frame=document.getElementById('pageFrame');
+    frame.addEventListener('load',()=>{
+      const doc=frame.contentDocument;
+      if(!doc) return;
+      const btn=[...doc.querySelectorAll('button')].find(b=>b.textContent.includes('連結帳號'));
+      const input=doc.querySelector('input');
+      const resultBox=doc.querySelector('.result')||doc.body.appendChild(doc.createElement('div'));
+      resultBox.className='result';
+      resultBox.style.marginTop='20px';
+      resultBox.style.color='#f5e6c8';
+      if(btn&&input){
+        btn.onclick=async()=>{
+          const acc=input.value.trim();
+          if(!acc){resultBox.textContent='請輸入帳號';return;}
+          resultBox.textContent='搜尋中…';
+          try{
+            const response=await fetch(`https://api.example.com/ig?user=${acc}`);
+            const data=await response.json();
+            if(data&&data.username){
+              resultBox.innerHTML=`<div style="padding:16px;border:1px solid #B68D4C;border-radius:12px;background:rgba(255,255,255,.03);max-width:480px">
+              <h3 style=\"margin:0 0 12px;font-size:18px;color:#E4C27A\">帳號資訊</h3>
+              <p style=\"margin:6px 0\">帳號：${data.username}</p>
+              <p style=\"margin:6px 0\">粉絲：${data.followers}</p>
+              <p style=\"margin:6px 0\">貼文數：${data.posts}</p>
+              <p style=\"margin:6px 0\">互動率：${data.engagement}%</p>
+              </div>`;
+            }else{
+              resultBox.textContent='連結失敗：找不到這個帳號';
+            }
+          }catch(e){resultBox.textContent='連結失敗';}
+        };
+      }
+    });
+  });
   </script>
 </body>
 </html>
