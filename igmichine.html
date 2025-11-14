@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IG 商業帳號串接｜雋宇命理後台</title>
+
+<style>
+  body{
+    margin:0;
+    background:#000;
+    color:#f5e6c8;
+    font-family:'Noto Serif TC','Microsoft JhengHei',serif;
+    padding:40px 20px;
+  }
+  .wrap{max-width:900px;margin:0 auto;}
+  h1{
+    font-size:24px;margin-bottom:24px;letter-spacing:.1em;
+    background:linear-gradient(135deg,#C69C6D,#E9D6A3,#F7E7B7,#B68D4C,#E2C073,#8B6B2E);
+    -webkit-background-clip:text;color:transparent;
+  }
+  .btn{
+    height:44px;padding:0 18px;border-radius:8px;border:none;cursor:pointer;
+    background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000;font-weight:700;
+  }
+  .panel{
+    margin-top:20px;padding:20px;border:1px solid #B68D4C;border-radius:14px;
+    background:rgba(255,255,255,0.03);
+  }
+  .row{margin-top:14px;display:flex;justify-content:space-between;}
+  .label{color:#E4C27A;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Instagram 商業帳號串接</h1>
+
+<button class="btn" id="loginBtn">連結 IG 商業帳號</button>
+
+<div class="panel" id="infoPanel" style="display:none;">
+  <div class="row"><span class="label">IG 商業帳號：</span><span id="igName">--</span></div>
+  <div class="row"><span class="label">Page ID：</span><span id="pageId">--</span></div>
+  <div class="row"><span class="label">IG Business ID：</span><span id="igBizId">--</span></div>
+  <div class="row"><span class="label">Access Token：</span><span id="token">--</span></div>
+</div>
+
+</div>
+
+<script>
+// 模擬授權（未接真 API 前用）：
+document.getElementById("loginBtn").onclick = () => {
+  document.getElementById("infoPanel").style.display = "block";
+  document.getElementById("igName").textContent = "mike_tarot (範例)";
+  document.getElementById("pageId").textContent = "123456789";
+  document.getElementById("igBizId").textContent = "987654321";
+  document.getElementById("token").textContent = "EAABsbCS1iHgBA...";
+};
+</script>
+
+</body>
+</html>
