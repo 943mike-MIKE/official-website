@@ -3,31 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IG 自動回覆控制台｜雋宇命理</title>
+  <title>IG 自動回覆控制台（左側導覽版｜單檔可開）</title>
   <style>
     :root{--bg:#0b0b0b;--card:#121212;--line:#2a2a2a;--text:#eee;--muted:#bdbdbd;--brand:#eab308;--ok:#22c55e;--bad:#f43f5e}
-    *{box-sizing:border-box} 
-    body{
-      margin:0;background:var(--bg);color:var(--text);
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;
-      display:flex;min-height:100vh
-    }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;display:flex;min-height:100vh}
     a{color:inherit;text-decoration:none}
-
     /* 左側欄 */
-    aside{
-      width:264px;background:#141414;border-right:1px solid var(--line);
-      display:flex;flex-direction:column;justify-content:space-between
-    }
+    aside{width:264px;background:#141414;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
     .nav-top{padding:18px}
     .nav-title{font-weight:800;font-size:18px;margin-bottom:12px;color:var(--brand)}
     .nav-section{margin:10px 0 6px 8px;color:#9ca3af;font-size:12px}
-    .nav-btn{
-      display:flex;align-items:center;gap:10px;width:100%;
-      background:none;border:0;color:var(--text);
-      padding:10px 14px;text-align:left;font-size:14px;
-      border-radius:8px;cursor:pointer
-    }
+    .nav-btn{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;color:var(--text);padding:10px 14px;text-align:left;font-size:14px;border-radius:8px;cursor:pointer}
     .nav-btn .dot{width:8px;height:8px;border-radius:50%;background:#374151}
     .nav-btn:hover,.nav-btn.active{background:rgba(234,179,8,0.10);color:var(--brand)}
     .nav-btn.active .dot{background:var(--brand)}
@@ -35,29 +21,14 @@
     /* 主區域 */
     main{flex:1;overflow-y:auto;padding:24px}
     .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-    .search{
-      max-width:360px;width:100%;background:#0f0f0f;color:#eee;
-      border:1px solid var(--line);border-radius:10px;padding:10px
-    }
-    .card{
-      background:var(--card);border:1px solid var(--line);
-      border-radius:16px;padding:16px;margin-bottom:16px
-    }
+    .search{max-width:360px;width:100%;background:#0f0f0f;color:#eee;border:1px solid var(--line);border-radius:10px;padding:10px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
     .title{display:flex;align-items:center;gap:8px;font-weight:800}
     .row{display:grid;grid-template-columns:200px 1fr;gap:12px;align-items:center;margin:12px 0}
-    input,select,textarea{
-      width:100%;background:#0f0f0f;color:#eee;border:1px solid var(--line);
-      border-radius:10px;padding:10px
-    }
-    .btn{
-      background:var(--brand);color:#111;border:0;border-radius:10px;
-      padding:10px 14px;font-weight:800;cursor:pointer
-    }
+    input,select,textarea{width:100%;background:#0f0f0f;color:#eee;border:1px solid var(--line);border-radius:10px;padding:10px}
+    .btn{background:var(--brand);color:#111;border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
     .btn.outline{background:transparent;color:var(--brand);border:1px solid var(--brand)}
-    .pill{
-      display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);
-      border-radius:999px;padding:4px 10px;font-size:12px;color:#ddd
-    }
+    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;color:#ddd}
     .pill.ok{border-color:#175e2c;background:#0f2d1b;color:#79e8a7}
     .pill.bad{border-color:#7a1c27;background:#2a0f13;color:#ff9db0}
     .sep{height:1px;background:var(--line);margin:12px 0}
@@ -69,26 +40,29 @@
     table{width:100%;border-collapse:collapse;font-size:14px}
     th,td{border-bottom:1px solid var(--line);padding:10px;text-align:left}
     th{color:#cbd5e1;font-weight:700}
-    .chip{
-      display:inline-flex;align-items:center;gap:6px;
-      padding:4px 8px;border:1px solid var(--line);
-      border-radius:999px;margin:2px;background:#0f0f0f
-    }
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;margin:2px;background:#0f0f0f}
+
+    /* 流程圖簡版 */
+    .flow-wrap{background:#101010;border:1px solid var(--line);border-radius:16px;padding:16px;overflow:auto}
+    .node{display:inline-block;background:#181818;border:1px solid #2f2f2f;color:#ddd;border-radius:10px;padding:10px 12px;position:absolute;min-width:160px}
+    .node .h{font-weight:700;margin-bottom:6px}
+    .canvas{position:relative;height:520px}
+    svg{position:absolute;left:0;top:0;width:100%;height:100%}
+    .toggle{width:40px;height:22px;border-radius:20px;background:#374151;position:relative;cursor:pointer;display:inline-block}
+    .toggle.on{background:#22c55e}
+    .toggle i{position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s}
+    .toggle.on i{transform:translateX(18px)}
+    .acts a{margin-right:8px;opacity:.9}
+    .empty{color:#9ca3af;text-align:center;padding:24px 8px}
   </style>
 </head>
 <body>
   <aside>
     <div class="nav-top">
       <div class="nav-title">IG 控制台</div>
-
-      <button class="nav-btn" onclick="window.location.href='index.html'">
-        <span class="dot"></span> 返回官網
-      </button>
-
+      <button class="nav-btn" onclick="window.location.href='官網第一頁.html'"><span class="dot"></span> 官方網站</button>
       <div class="nav-section">帳號</div>
-      <button class="nav-btn active" data-page="bind">
-        <span class="dot"></span> 商業帳號
-      </button>
+      <button class="nav-btn active" data-page="bind"><span class="dot"></span> 商業帳號</button>
 
       <div class="nav-section">內容管理</div>
       <button class="nav-btn" data-page="intents"><span class="dot"></span> 寫回覆規則</button>
@@ -103,15 +77,12 @@
       <button class="nav-btn" data-page="audience"><span class="dot"></span> 受眾管理</button>
       <button class="nav-btn" data-page="settings"><span class="dot"></span> 設定</button>
     </div>
-
-    <div class="nav-bottom" style="padding:16px;font-size:12px;color:var(--muted)">
-      ©2025 雋宇命理
-    </div>
+    <div class="nav-bottom" style="padding:16px;font-size:12px;color:var(--muted)">©2025 雋宇命理</div>
   </aside>
 
   <main id="content">
     <div class="topbar">
-      <div style="font-weight:800">IG 自動回覆控制台</div>
+      <div style="font-weight:800">單檔預覽（先排版、後接API）</div>
       <input class="search" placeholder="搜尋名稱或關鍵字" />
     </div>
 
@@ -131,22 +102,22 @@
   </main>
 
   <script>
-    const igUrl = document.querySelector('#igUrl');
-    const connectBtn = document.querySelector('#connectBtn');
-    const connStatus = document.querySelector('#connStatus');
-
-    connectBtn.addEventListener('click', () => {
-      const url = igUrl.value.trim();
-      if (!url) { alert('請貼上 IG 帳號網址'); return; }
-      connectBtn.disabled = true;
-      connectBtn.textContent = '連結中…';
-
-      setTimeout(() => {
-        connStatus.className = 'pill ok';
-        connStatus.textContent = '成功連結';
-        connectBtn.textContent = '重新連結';
-        connectBtn.disabled = false;
-      }, 600);
+    const state = { connected:false };
+    const $ = (s)=>document.querySelector(s);
+    const $$ = (s)=>Array.from(document.querySelectorAll(s));
+    const igUrl=$('#igUrl');
+    const connectBtn=$('#connectBtn');
+    const connStatus=$('#connStatus');
+    connectBtn.addEventListener('click',()=>{
+      const url=igUrl.value.trim();
+      if(!url){alert('請貼上 IG 帳號網址');return;}
+      connectBtn.disabled=true;connectBtn.textContent='連結中…';
+      setTimeout(()=>{
+        connStatus.className='pill ok';
+        connStatus.textContent='成功連結';
+        connectBtn.textContent='重新連結';
+        connectBtn.disabled=false;
+      },600);
     });
   </script>
 </body>

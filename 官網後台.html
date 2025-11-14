@@ -7,59 +7,32 @@
   <style>
     @font-face {
       font-family: 'YuWeiCalligraphy';
-      src: local('YuWeiCalligraphy'),
-           url('./YuWeiCalligraphy.ttf') format('truetype'),
-           url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype');
+      src: local('YuWeiCalligraphy'), url('./YuWeiCalligraphy.ttf') format('truetype'), url('./禹卫书法隶书繁体（新优化版）.ttf') format('truetype');
       font-display: swap;
     }
     :root {--bg:#000;--gold1:#C69C6D;--gold2:#E9D6A3;--gold3:#F7E7B7;--gold4:#B68D4C;--gold5:#E2C073;--gold6:#8B6B2E;}
     body{margin:0;padding:0;background:#000;color:#f5e6c8;font-family:'Noto Serif TC','Microsoft JhengHei',serif}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+    .gold{background:linear-gradient(135deg,var(--gold1)0%,var(--gold2)18%,var(--gold3)34%,var(--gold4)52%,var(--gold5)74%,var(--gold6)100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 .5px rgba(255,255,255,.35),0 1px 1.25px rgba(0,0,0,.65)}
+    .center{text-align:center}
+    .topbar{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:10px;align-items:center;padding:10px 12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border-radius:12px;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+    .yu-select{height:36px;border-radius:8px;border:1px solid #B68D4C;background:#0d0d0d;color:#f5e6c8;padding:0 8px}
+    .yu-btn{height:36px;border-radius:10px;border:none;padding:0 14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000}
+    .yu-btn:hover{filter:brightness(1.05)}
+
     .layout{display:flex}
-    .sidebar{
-      width:220px;background:rgba(0,0,0,.9);
-      border-right:1px solid rgba(182,141,76,.3);
-      padding:100px 20px 20px;
-      position:fixed;top:0;left:0;bottom:0;z-index:999
-    }
-    .sidebar h2{
-      color:#f5e6c8;font-size:18px;letter-spacing:.15em;
-      margin-bottom:24px;text-align:center
-    }
+    .sidebar{width:220px;background:rgba(0,0,0,.9);border-right:1px solid rgba(182,141,76,.3);padding:100px 20px 20px;position:fixed;top:0;left:0;bottom:0;z-index:999}
+    .sidebar h2{color:#f5e6c8;font-size:18px;letter-spacing:.15em;margin-bottom:24px;text-align:center}
     .menu{display:flex;flex-direction:column;gap:14px}
-    .menu a{
-      color:#f5e6c8;text-decoration:none;padding:10px 12px;
-      border-radius:10px;border:1px solid transparent;
-      border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;
-      transition:background .3s
-    }
+    .menu a{color:#f5e6c8;text-decoration:none;padding:10px 12px;border-radius:10px;border:1px solid transparent;border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;transition:background .3s}
     .menu a:hover{background:rgba(228,194,122,.15)}
     .menu a.active{background:rgba(228,194,122,.25)}
-    iframe.page-view{
-      width:100%;height:calc(100vh - 100px);border:none;
-    }
+
+    iframe.page-view{width:100%;height:calc(100vh - 100px);border:none;}
     .content{flex:1;margin-left:240px}
-    .topbar{
-      position:fixed;top:12px;right:12px;z-index:9999;
-      display:flex;gap:10px;align-items:center;
-      padding:10px 12px;background:rgba(0,0,0,.65);
-      backdrop-filter:blur(6px);border-radius:12px;
-      border:1px solid transparent;
-      border-image:linear-gradient(135deg,#E4C27A,#8B6B2E)1;
-      box-shadow:0 10px 24px rgba(0,0,0,.45)
-    }
-    .yu-select{
-      height:36px;border-radius:8px;border:1px solid #B68D4C;
-      background:#0d0d0d;color:#f5e6c8;padding:0 8px
-    }
-    .yu-btn{
-      height:36px;border-radius:10px;border:none;
-      padding:0 14px;font-weight:700;cursor:pointer;
-      background:linear-gradient(135deg,#E4C27A,#8B6B2E);color:#000
-    }
   </style>
 </head>
 <body>
-
   <div class="topbar">
     <select class="yu-select" id="langSelect" aria-label="語言">
       <option value="zh" selected>繁中</option>
@@ -67,15 +40,15 @@
       <option value="ko">한국어</option>
       <option value="ja">日本語</option>
     </select>
-    <button class="yu-btn" onclick="location.href='index.html'">返回首頁</button>
+    <button class="yu-btn" onclick="window.open('https://cal.com/your-booking','_blank')">預約</button>
   </div>
 
   <div class="layout">
     <aside class="sidebar">
       <h2 class="gold">官網後台</h2>
       <nav class="menu">
-        <a href="#" onclick="loadPage('ig機器人.html', this)" class="active">IG 機器人</a>
-        <a href="#" onclick="loadPage('index.html', this)">網站前台</a>
+        <a href="#" onclick="loadPage('ig機器人.html', this)" class="active">ig機器人</a>
+        <a href="#" onclick="loadPage('官網第一頁.html', this)">網站前台</a>
         <a href="#" onclick="loadPage('預約.html', this)">預約系統</a>
       </nav>
     </aside>
@@ -92,6 +65,5 @@
       el.classList.add('active');
     }
   </script>
-
 </body>
 </html>
