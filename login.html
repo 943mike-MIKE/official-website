@@ -176,9 +176,12 @@
       e.preventDefault();
       const id = document.getElementById('account').value.trim();
       const pw = document.getElementById('password').value.trim();
-      if (id === 'admin' && pw === 'admin123') {
-        window.location.href = 'ig機器人.html';
+      if (id === '123' && pw === '123') {
+        window.location.href = 'admin.html';
       } else {
+        alert('帳號或密碼錯誤');
+      }
+    } else {
         alert('帳號或密碼錯誤');
       }
     });
