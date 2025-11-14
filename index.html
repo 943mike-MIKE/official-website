@@ -10,7 +10,7 @@
   <title>雋宇命理－MIKE塔羅｜官網首頁</title>
   <style>
 /* 重新建構乾淨、可正常運作的 STYLE 區塊（桌機版為主） */
-@font-face{font-family:'YuWeiCalligraphy';src:url('D:/老爺子/工作/官方網站/YuWeiCalligraphy.ttf') format('truetype');font-display:swap}
+@font-face{font-family:'YuWeiCalligraphy';src:url('./YuWeiCalligraphy.ttf') format('truetype');font-display:swap}
 
 /* ---- 桌機版 NAV ---- */
 .nav-pc{
@@ -284,7 +284,7 @@
     (async()=>{
       if(document.fonts&&'FontFace'in window){
         try{
-          const f=new FontFace('YuWeiCalligraphy',"url('D:/老爺子/工作/官方網站/YuWeiCalligraphy.ttf') format('truetype')");
+          const f=new FontFace('YuWeiCalligraphy',"url('./YuWeiCalligraphy.ttf') format('truetype')");
           await f.load();document.fonts.add(f);
         }catch(e){}
         
