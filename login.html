@@ -64,24 +64,28 @@
       font-family: 'YuWeiCalligraphy', serif;
     }
 
-    .slogan {
-      font-family: 'YuWeiCalligraphy', "Noto Serif TC", serif;
-      font-size: 48px;
-      letter-spacing: 0.35em;
-      line-height: 1.9;
-      white-space: normal;
-      background: none;
-      padding: 18px 26px;
-      border-radius: 16px;
-      border: 1px solid rgba(228,194,122,.25);
-      box-shadow: 0 8px 20px rgba(0,0,0,.35);
+    .slogan{
+      background:rgba(0,0,0,0.55);
+      padding:18px 26px;
+      border-radius:16px;
+      border:1px solid rgba(228,194,122,.25);
+      box-shadow:0 8px 20px rgba(0,0,0,.35);
       display:inline-block;
-      background-image: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 100%);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shine 6s linear infinite;
+    }
+
+    .shineTxt{
+      font-family:'YuWeiCalligraphy',"Noto Serif TC",serif;
+      font-size:48px;
+      letter-spacing:0.35em;
+      line-height:1.9;
+      background-image:linear-gradient(120deg,rgba(255,255,255,0)0%,rgba(255,255,255,.55)50%,rgba(255,255,255,0)100%);
+      background-size:200% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:shine 6s linear infinite;
+      display:inline-block;
+    }
     }
 
   </style>
@@ -94,7 +98,8 @@
         <b>雋宇命理</b>
       </div>
       <div class="slogan">
-        地獄不空　誓不成佛<br>渡盡一切　方證菩提
+        <span class="shineTxt">地獄不空　誓不成佛</span><br>
+        <span class="shineTxt">渡盡一切　方證菩提</span>
       </div>
     </div>
 
