@@ -152,7 +152,8 @@ document.getElementById("linkBtn").onclick = async () => {
 
   try{
     // 你之後要換成你自己的 API
-    const res = await fetch(`https://api.example.com/ig?user=${user}`);
+    const url = `https://www.instagram.com/${user}/?__a=1&__d=dis`;
+    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
     const data = await res.json();
 
     if(data && data.username){
