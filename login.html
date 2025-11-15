@@ -194,7 +194,6 @@ body{
         const bg = document.getElementById('bgVideo');
         bg.currentTime = 0;
 
-        // 等黑框滑開後才開始撥放影片
         setTimeout(()=>{
           bg.play();
           bg.classList.add('show');
@@ -206,15 +205,12 @@ body{
         document.querySelector('.panel').style.transform = 'translateX(140%)';
         document.querySelector('.panel').style.opacity = 0;
 
-        // 影片真正播完後才跳轉
         bg.addEventListener('ended', () => {
           window.location.href = 'admin.html';
         });
 
       } else {
         alert('帳號或密碼錯誤');
-      }
-    }
       }
     });
   </script>
