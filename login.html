@@ -212,6 +212,10 @@ body{
         document.querySelector('.panel').style.opacity = 0;
 
         setTimeout(()=>{
+          bg.classList.add('show');
+        }, 200);
+
+        setTimeout(()=>{
           window.location.href = 'admin.html';
         }, 3000);
         }, 3000);
