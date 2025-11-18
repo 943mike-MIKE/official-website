@@ -2,10 +2,35 @@
   {
     "id": 1,
     "name": "",
+    "subtitle": "",
     "price": 0,
+    "originalPrice": 0,
     "category": "",
     "tag": "",
+    "status": "active",
     "image": "",
-    "status": "active"
+    "images": [],
+    "content": "",
+    "stock": 0,
+    "sku": "",
+    "specs": {
+      "size": "",
+      "material": "",
+      "weight": "",
+      "note": ""
+    },
+    "sort": 0,
+    "seo": {
+      "title": "",
+      "description": "",
+      "keywords": []
+    },
+    "rating": {
+      "score": 0,
+      "count": 0,
+      "reviews": []
+    },
+    "createdAt": "",
+    "updatedAt": ""
   }
 ]
