@@ -1,36 +1,218 @@
-[
-  {
-    "id": 1,
-    "name": "",
-    "subtitle": "",
-    "price": 0,
-    "originalPrice": 0,
-    "category": "",
-    "tag": "",
-    "status": "active",
-    "image": "",
-    "images": [],
-    "content": "",
-    "stock": 0,
-    "sku": "",
-    "specs": {
-      "size": "",
-      "material": "",
-      "weight": "",
-      "note": ""
-    },
-    "sort": 0,
-    "seo": {
-      "title": "",
-      "description": "",
-      "keywords": []
-    },
-    "rating": {
-      "score": 0,
-      "count": 0,
-      "reviews": []
-    },
-    "createdAt": "",
-    "updatedAt": ""
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新增商品｜後台管理</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    color: #f5e6c8;
+    font-family: Arial;
+    padding: 20px;
   }
-]
+
+  h1 {
+    color: #E4C27A;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: 15px;
+    color: #E4C27A;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    background: #222;
+    border: 1px solid #444;
+    color: #f5e6c8;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  .preview-img {
+    margin-top: 10px;
+    max-width: 180px;
+    border: 1px solid #444;
+    border-radius: 6px;
+  }
+
+  .multi-preview img {
+    width: 120px;
+    margin: 5px;
+    border-radius: 6px;
+    border: 1px solid #444;
+  }
+
+  button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #E4C27A;
+    color: #111;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.85;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>新增商品</h1>
+
+<div class="form-group">
+  <label>商品名稱</label>
+  <input type="text" id="name">
+</div>
+
+<div class="form-group">
+  <label>一句話簡介</label>
+  <input type="text" id="subtitle">
+</div>
+
+<div class="form-group">
+  <label>分類</label>
+  <input type="text" id="category">
+</div>
+
+<div class="form-group">
+  <label>標籤（熱門 / 暢銷 / 熱賣...）</label>
+  <input type="text" id="tag">
+</div>
+
+<div class="form-group">
+  <label>售價</label>
+  <input type="number" id="price">
+</div>
+
+<div class="form-group">
+  <label>原價</label>
+  <input type="number" id="originalPrice">
+</div>
+
+<div class="form-group">
+  <label>庫存量</label>
+  <input type="number" id="stock">
+</div>
+
+<div class="form-group">
+  <label>主圖上傳</label>
+  <input type="file" accept="image/*" id="mainImage">
+  <img id="mainPreview" class="preview-img" style="display:none;">
+</div>
+
+<div class="form-group">
+  <label>多圖上傳（可多選）</label>
+  <input type="file" accept="image/*" id="multiImages" multiple>
+  <div id="multiPreview" class="multi-preview"></div>
+</div>
+
+<div class="form-group">
+  <label>商品內容（HTML 可貼）</label>
+  <textarea id="content" rows="6"></textarea>
+</div>
+
+<div class="form-group">
+  <label>尺寸（規格）</label>
+  <input type="text" id="specSize">
+</div>
+
+<div class="form-group">
+  <label>材質</label>
+  <input type="text" id="specMaterial">
+</div>
+
+<div class="form-group">
+  <label>重量</label>
+  <input type="text" id="specWeight">
+</div>
+
+<div class="form-group">
+  <label>注意事項</label>
+  <input type="text" id="specNote">
+</div>
+
+<br>
+<button onclick="submitProduct()">新增商品</button>
+
+<script>
+  // 主圖即時預覽
+  document.getElementById("mainImage").addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const preview = document.getElementById("mainPreview");
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+  });
+
+  // 多圖即時預覽
+  document.getElementById("multiImages").addEventListener("change", function(e) {
+    const files = e.target.files;
+    const box = document.getElementById("multiPreview");
+    box.innerHTML = "";
+    Array.from(files).forEach(img => {
+      const tag = document.createElement("img");
+      tag.src = URL.createObjectURL(img);
+      box.appendChild(tag);
+    });
+  });
+
+  // 新增
+  function submitProduct() {
+    const product = {
+      id: Date.now(),
+      name: document.getElementById("name").value,
+      subtitle: document.getElementById("subtitle").value,
+      price: Number(document.getElementById("price").value),
+      originalPrice: Number(document.getElementById("originalPrice").value),
+      category: document.getElementById("category").value,
+      tag: document.getElementById("tag").value,
+      status: "active",
+      image: "",
+      images: [],
+      content: document.getElementById("content").value,
+      stock: Number(document.getElementById("stock").value),
+      sku: "",
+      specs: {
+        size: document.getElementById("specSize").value,
+        material: document.getElementById("specMaterial").value,
+        weight: document.getElementById("specWeight").value,
+        note: document.getElementById("specNote").value
+      },
+      sort: 0,
+      seo: {
+        title: "",
+        description: "",
+        keywords: []
+      },
+      rating: {
+        score: 0,
+        count: 0,
+        reviews: []
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    alert("商品資料已建立（目前存在 JS 內）。\n接著你要告訴我：要怎麼存回 products.json。");
+
+    console.log(product);
+  }
+</script>
+
+</body>
+</html>
