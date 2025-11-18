@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "",
+    "price": 0,
+    "category": "",
+    "tag": "",
+    "image": "",
+    "status": "active"
+  }
+]
