@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>商城｜MIKE TAROT</title>
+
+<style>
+  @font-face{font-family:'YuWeiCalligraphy';src:url('YuWeiCalligraphy.ttf');}
+  body{
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;
+  }
+
+  /* 整體布局 */
+  .layout{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* 左側導覽列 */
+  .sidebar{
+    width:220px;
+    background:#111;
+    border-right:1px solid #333;
+    padding:20px 15px;
+  }
+
+  .brand{color:#e4c27a;font-size:28px;margin-bottom:20px;font-family:'YuWeiCalligraphy';text-align:center;width:100%;}
+  .sidebar h2{
+    color:#e4c27a;
+    font-size:18px;
+    margin-bottom:20px;
+    letter-spacing:1px;
+  }
+
+  .sidebar button{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:10px 12px;
+    margin-bottom:10px;
+    background:#111;
+    border:1px solid #e4c27a55;
+    color:#e4c27a;
+    border-radius:6px;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .sidebar button:hover,
+  .sidebar button.active{
+    background:#e4c27a;
+    color:#000;
+  }
+
+  /* 主內容區 */
+  .content{
+    flex:1;
+    padding:30px;
+  }
+
+  h1{
+    font-size:24px;
+    font-weight:600;
+    margin-bottom:25px;
+    color:#f5e6c8;
+  }
+
+  /* 商品格線 */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+
+  @media(max-width:900px){
+    .sidebar{ width:180px; }
+    .grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media(max-width:600px){
+    .layout{ flex-direction:column; }
+    .sidebar{
+      width:100%;
+      border-right:none;
+      border-bottom:1px solid #333;
+    }
+    .grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media(max-width:480px){
+    .grid{ grid-template-columns:repeat(1,1fr); }
+  }
+
+  .card{
+    background:#fff;
+    color:#000;
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+    transition:.3s;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+  }
+
+  .card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+  }
+
+  .info{
+    padding:15px;
+  }
+
+  .name{
+    font-size:16px;
+    margin-bottom:8px;
+    font-weight:600;
+  }
+
+  .price{
+    font-size:15px;
+    color:#444;
+  }
+
+  .tag{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#e4c27a;
+    color:#000;
+    padding:4px 10px;
+    font-size:12px;
+    border-radius:4px;
+    font-weight:700;
+  }
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+  <!-- 左側直欄分類選單 -->
+  <nav class="sidebar">
+    <div class="brand">雋宇命理</div>
+    <h2>商品分類</h2>
+    <button class="active" onclick="filterProducts('all')">全部商品</button>
+    <button onclick="filterProducts('necklace')">項鍊</button>
+    <button onclick="filterProducts('bracelet')">手鍊</button>
+    <button onclick="filterProducts('ring')">戒指</button>
+    <button onclick="filterProducts('crystal')">水晶</button>
+    <button onclick="filterProducts('custom')">客製商品</button>
+    <button onclick="filterProducts('sandalwood')">老山檀香</button>
+    <button onclick="filterProducts('moonblush')">午月雪粉</button>
+    <button onclick="filterProducts('tarot')">塔羅卡牌</button>
+    <button onclick="filterProducts('terrarium')">水晶生態瓶</button>
+    <button onclick="filterProducts('energy_flower')">能量花藝盆</button>
+  </nav>
+
+  <!-- 主內容區 -->
+  <main class="content">
+    <h1>商品一覽</h1>
+    <div class="grid" id="productGrid"></div>
+  </main>
+
+</div>
+
+<script>
+let products = [];
+
+async function loadProducts(){
+  const res = await fetch("products.json");
+  products = await res.json();
+  renderProducts(products);
+}
+
+function renderProducts(list){
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+  if(list.length === 0){
+    grid.innerHTML = `
+      <div class="card"><img src="https://via.placeholder.com/300x250/ffffff/000000?text=No+Image"/><div class="info"><div class="name">商品名稱</div><div class="price">NT$ 0</div></div></div>
+      <div class="card"><img src="https://via.placeholder.com/300x250/ffffff/000000?text=No+Image"/><div class="info"><div class="name">商品名稱</div><div class="price">NT$ 0</div></div></div>
+      <div class="card"><img src="https://via.placeholder.com/300x250/ffffff/000000?text=No+Image"/><div class="info"><div class="name">商品名稱</div><div class="price">NT$ 0</div></div></div>
+      <div class="card"><img src="https://via.placeholder.com/300x250/ffffff/000000?text=No+Image"/><div class="info"><div class="name">商品名稱</div><div class="price">NT$ 0</div></div></div>
+    `;
+    return;
+  }
+
+  list.forEach(p=>{
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      ${p.tag ? `<div class="tag">${p.tag}</div>` : ""}
+      <img src="${p.image}" alt="">
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price">NT$ ${p.price}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function filterProducts(cat){
+  document.querySelectorAll(".sidebar button").forEach(btn=>btn.classList.remove("active"));
+  event.target.classList.add("active");
+
+  if(cat==="all"){
+    renderProducts(products);
+  }else{
+    renderProducts(products.filter(p=>p.category===cat));
+  }
+}
+
+loadProducts();
+</script>
+
+</body>
+</html>
