@@ -179,6 +179,7 @@ async function loadProducts(){
 function renderProducts(list){
   const grid = document.getElementById("productGrid");
   grid.innerHTML = "";
+
   if(list.length === 0){
     grid.innerHTML = `
       <div class="card"><img src="https://via.placeholder.com/300x250/ffffff/000000?text=No+Image"/><div class="info"><div class="name">商品名稱</div><div class="price">一句話簡介</div></div></div>
@@ -194,6 +195,22 @@ function renderProducts(list){
     `;
     return;
   }
+
+  list.forEach(p=>{
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      ${p.tag ? `<div class="tag">${p.tag}</div>` : ""}
+      <img src="${p.image}" alt="">
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price">NT$ ${p.price}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
   }
 
   list.forEach(p=>{
